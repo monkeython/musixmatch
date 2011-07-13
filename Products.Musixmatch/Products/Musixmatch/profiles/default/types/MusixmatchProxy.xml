@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<object name="MusixmatchProxy"
+        meta_type="Factory-based Type Information with dynamic views"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="plone">
+   
+ 	<property name="title" i18n:translate="">MusixmatchProxy</property>
+ 	<property name="description" i18n:translate="">MusixmatchProxy Content</property>
+ 	<property name="content_icon">building.png</property>
+ 	<property name="content_meta_type">MusixmatchProxy</property>
+ 	<property name="product">Musixmatch</property>
+ 	<property name="factory">addMusixmatchProxy</property>
+ 	<property name="immediate_view">folder_listing</property>
+ 	<property name="global_allow">True</property>
+ 	<property name="filter_content_types">True</property>
+ 	<property name="allow_discussion">False</property>
+ 	<property name="default_view">folder_listing</property>
+	<property name="allowed_content_types">
+	</property>   
+ 	
+ 	<property name="view_methods">
+  		<element value="folder_summary_view"/>
+  		<element value="folder_tabular_view"/>
+  		<element value="atct_album_view"/>
+  		<element value="folder_listing"/>
+ 	</property>
+ 	
+ 	<property name="default_view_fallback">False</property>
+ 	
+	<alias from="(Default)" to="(dynamic view)"/>
+	<alias from="view" to="(selected layout)"/>
+ 	<alias from="edit" to="base_edit"/>
+ 	<alias from="sharing" to="@@sharing"/>
+ 	
+ 	<action title="View" 
+         	action_id="view"
+         	category="object" 
+         	condition_expr=""
+         	url_expr="string:${object_url}/view" 
+         	visible="True">
+  		<permission value="View"/>
+ 	</action>
+ 	<action title="Edit" 
+        	action_id="edit"
+        	category="object" 
+       	  	condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user"
+         	url_expr="string:${object_url}/edit" 
+         	visible="True">
+  		<permission value="Modify portal content"/>
+ </action>
+</object>

@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="Town">
+
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
+    <cmf:registerDirectory name="musixmatch_images"/>
+    <cmf:registerDirectory name="musixmatch_styles"/>
+    <cmf:registerDirectory name="musixmatch_templates"/>
+
+    <genericsetup:registerProfile
+        name="musixmatch"
+        title="Musixmatch"
+        directory="profiles/default"
+        description="Default Musixmatch profile."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
+
+</configure>
