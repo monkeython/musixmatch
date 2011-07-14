@@ -13,18 +13,11 @@ least, `Django`_
 What's going on
 ===============
 
-`Python`_ 2.6, 2.7
-   python-musixmatch
-`Plone`_
-   Product.Musixmatch
-`Turbogears`_
-   Work in progress
-`Pylons/Pyramid`_
-   Work in progress
-`Django`_
-   Work in progress
-`Grok`_
-   Work in progress
+python-musixmatch: `Python`_ 2.6, 2.7
+
+Product.Musixmatch: `Plone`_
+
+Work in progress for: `Turbogears`_, `Pylons/Pyramid`_, `Django`_, `Grok`_
 
 .. _Python: http://www.python.org/download/releases/
 .. _Plone: http://plone.org
