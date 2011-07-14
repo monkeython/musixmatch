@@ -10,12 +10,12 @@ then I'll take the chance to start developing with some frameworks I'm not
 familiar with, like `Pylons/Pyramid`_, `Turbogears`_, `Grok`_ and last, but not
 least, `Django`_
 
-What's going on
-===============
+What's inside this project
+==========================
 
-python-musixmatch: `Python`_ 2.6, 2.7
+python-musixmatch: `Python`_ (2.6, 2.7) package
 
-Product.Musixmatch: `Plone`_
+Product.Musixmatch: `Plone`_ Product
 
 Work in progress for: `Turbogears`_, `Pylons/Pyramid`_, `Django`_, `Grok`_
 
