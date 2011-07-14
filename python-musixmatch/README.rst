@@ -26,12 +26,15 @@ You can just use setup.py to build and install python-musixmatch::
    prompt $ python setup.py bdist_egg
 
 Once built, you can use easy_install on the python egg.
+
 Documentation
 =============
 You can generate your own local copy of the documentation using `Sphinx`_
 trough the setup.py::
 
    prompt $ python setup.py build_sphinx
+
+.. _Sphinx: http://sphinx.pocoo.org
 
 Unit testing
 ============
@@ -66,3 +69,4 @@ musixmatch_format
    the response message format to query for
 musixmatch_apiversion
    the api version to use in queryes
+
