@@ -16,8 +16,8 @@ It's that simple. Last, you can brows this documentation and have fun with the o
 Caching support
 ===============
 
-Applications using :py:mod:`musixmatch.api` may take advantage of standard
-:py:mod:`urllib` support for **http_proxy**, so they can just set up the proper
+Applications using python-musixmatch may take advantage of standard
+urllib support for **http_proxy**, so they can just set up the proper
 environment variable:
 
 http_proxy
@@ -27,11 +27,10 @@ Considering all the available HTTP proxy solutions, I'm reluctant to implement
 a further caching support. Though i can consider serialization support.
 
 Environment variables
-================
+=====================
 
-:py:mod:`musixmatch.api` takes advantage of :py:attr:`os.environ` to
-get **apikey**, **format** and api **version** values to use in
-:py:class:`musixmatch.api.Method` calls:
+python-musixmatch takes advantage of operating system environment to get
+**apikey**, **format** and api **version** values to use in API calls:
 
 musixmatch_apikey
    the apikey value to use in query strings
