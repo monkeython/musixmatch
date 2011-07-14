@@ -26,12 +26,11 @@ What's going on
 `Grok`_
    Work in progress
 
-_Python: http://www.python.org/download/releases/
-_Plone: http://plone.org
-_Pylons/Pyramid: http://pylonsproject.org
-_Turbogears: http://turbogears.org
-_Grok: http://grok.zope.org
-_Django: https://www.djangoproject.com
-_API: https://developer.musixmatch.com/documentation
-https://developer.musixmatch.com/documentation
-_people at Musixmatch: http://musixmatch.com/about_us
+.. _Python: http://www.python.org/download/releases/
+.. _Plone: http://plone.org
+.. _Pylons/Pyramid: http://pylonsproject.org
+.. _Turbogears: http://turbogears.org
+.. _Grok: http://grok.zope.org
+.. _Django: https://www.djangoproject.com
+.. _API: https://developer.musixmatch.com/documentation
+.. _people at Musixmatch: http://musixmatch.com/about_us
