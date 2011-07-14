@@ -20,7 +20,8 @@ Applications using :py:mod:`musixmatch.api` may take advantage of standard
 :py:mod:`urllib` support for **http_proxy**, so they can just set up the proper
 environment variable:
 
-:http_proxy: the complete HTTP proxy URL to use in queries.
+http_proxy
+   the complete HTTP proxy URL to use in queries.
 
 Considering all the available HTTP proxy solutions, I'm reluctant to implement
 a further caching support. Though i can consider serialization support.
@@ -32,7 +33,10 @@ Environment variables
 get **apikey**, **format** and api **version** values to use in
 :py:class:`musixmatch.api.Method` calls:
 
-:musixmatch_apikey: the apikey value to use in query strings
-:musixmatch_format: the response message format to query for
-:musixmatch_apiversion: the api version to use in queryes
+musixmatch_apikey
+   the apikey value to use in query strings
+musixmatch_format
+   the response message format to query for
+musixmatch_apiversion
+   the api version to use in queryes
 
