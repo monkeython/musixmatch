@@ -14,7 +14,7 @@ email = email.strip('<>')
 url='http://src.monkeython.org/'
 version = pkg.__version__
 classifiers = pkg.__classifiers__
-readme = open(os.path.join(wd, 'docs', 'README.txt'),'r').readlines()
+readme = open(os.path.join(wd, 'README.rst'),'r').readlines()
 description = readme[0]
 long_description = '\n'.join(readme[2:])
 
