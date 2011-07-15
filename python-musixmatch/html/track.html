@@ -53,9 +53,8 @@
             
   <div class="section" id="module-musixmatch.track">
 <span id="track-module"></span><h1>5. track module<a class="headerlink" href="#module-musixmatch.track" title="Permalink to this headline">¶</a></h1>
-<p>This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Track or an
-ArtistsCollection.</p>
+<p>This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing a Track or a TracksCollection.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">musixmatch.track</span> <span class="kn">import</span> <span class="n">Track</span><span class="p">,</span> <span class="n">TracksCollection</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">track</span> <span class="o">=</span> <span class="n">Track</span><span class="p">(</span><span class="n">track_mbid</span><span class="o">=</span><span class="mi">8976</span><span class="p">)</span>
@@ -67,7 +66,7 @@ ArtistsCollection.</p>
 <em class="property">class </em><tt class="descname">Track</tt><big>(</big><em>dictionary=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.track.Track" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#musixmatch.base.Item" title="musixmatch.base.Item"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.base.Item</span></tt></a></p>
 <p>This class builds a <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt> like object representing a track. It
-can get track informations trough the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
+can get track informations through the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
 <strong>track.get</strong> or from an already well-formed <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt>. Create a
 Track object based on a given keyword argument:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -132,7 +131,7 @@ following keywords:</p>
 
 <dl class="method">
 <dt id="musixmatch.track.Track.get">
-<tt class="descname">get</tt><big>(</big><em>key</em>, <em>default=&lt;object object at 0x1921250&gt;</em><big>)</big><a class="headerlink" href="#musixmatch.track.Track.get" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get</tt><big>(</big><em>key</em>, <em>default=&lt;object object at 0x7fe276807570&gt;</em><big>)</big><a class="headerlink" href="#musixmatch.track.Track.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>If key is <em>lyrics</em> or <em>subtitle</em> try to query api for proper value,
 and build an <a class="reference internal" href="lyrics.html#musixmatch.lyrics.Lyrics" title="musixmatch.lyrics.Lyrics"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.lyrics.Lyrics</span></tt></a> or
 <a class="reference internal" href="subtitle.html#musixmatch.subtitle.Subtitle" title="musixmatch.subtitle.Subtitle"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.subtitle.Subtitle</span></tt></a>. Access to the above mentioned

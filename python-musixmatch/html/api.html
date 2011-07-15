@@ -171,7 +171,7 @@ message.  Parses the Json response message and build a proper python
 
 <dl class="class">
 <dt id="musixmatch.api.QueryString">
-<em class="property">class </em><tt class="descname">QueryString</tt><big>(</big><em>items={}</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.api.QueryString" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descname">QueryString</tt><big>(</big><em>items=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.api.QueryString" title="Permalink to this definition">¶</a></dt>
 <dd><p>A class representing  the keyword arguments to be used in HTTP requests as
 query string. Takes a <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt> of keywords, and encode values
 using utf-8. Also, the query string is sorted by keyword name, so that its
@@ -220,7 +220,7 @@ be used.</p>
 
 <dl class="class">
 <dt id="musixmatch.api.Request">
-<em class="property">class </em><tt class="descname">Request</tt><big>(</big><em>api_method</em>, <em>query_string={}</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.api.Request" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descname">Request</tt><big>(</big><em>api_method</em>, <em>query_string=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.api.Request" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the main API class. Given a <a class="reference internal" href="#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">Method</span></tt></a> or a method name, a
 <a class="reference internal" href="#musixmatch.api.QueryString" title="musixmatch.api.QueryString"><tt class="xref py py-class docutils literal"><span class="pre">QueryString</span></tt></a> or a <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt>, it can build the API query
 URL, run the request and return the response either as a string or as a

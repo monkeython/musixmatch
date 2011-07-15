@@ -53,9 +53,8 @@
             
   <div class="section" id="module-musixmatch.album">
 <span id="album-module"></span><h1>6. album module<a class="headerlink" href="#module-musixmatch.album" title="Permalink to this headline">¶</a></h1>
-<p>This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Album or an
-AlbumsCollection.</p>
+<p>This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing an Album or an AlbumsCollection.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">musixmatch.album</span> <span class="kn">import</span> <span class="n">Album</span><span class="p">,</span> <span class="n">AlbumsCollection</span>
 <span class="gp">&gt;&gt;&gt; </span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">album</span> <span class="o">=</span> <span class="n">Album</span><span class="p">(</span><span class="n">album_id</span><span class="o">=</span><span class="mi">292</span><span class="p">)</span>
@@ -67,7 +66,7 @@ AlbumsCollection.</p>
 <em class="property">class </em><tt class="descname">Album</tt><big>(</big><em>dictionary=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.album.Album" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#musixmatch.base.Item" title="musixmatch.base.Item"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.base.Item</span></tt></a></p>
 <p>This class build a <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt> like object representing an album. It
-can get album informations trough the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
+can get album informations through the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
 <strong>album.get</strong> or from an already well-formed <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt>. Create an
 Album object based on a given keyword argument:</p>
 <table class="docutils field-list" frame="void" rules="none">
