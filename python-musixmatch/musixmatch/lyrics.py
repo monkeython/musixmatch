@@ -1,6 +1,6 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the a track lyrics.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing a track lyrics.
 
 >>> from musixmatch.lyrics import Lyrics
 >>> 
@@ -13,7 +13,7 @@ from musixmatch.ws import track
 class Lyrics(base.Item):
     """
     This class builds a :py:class:`dict` object representing a the lirycs of a
-    track. It can get lyrics trough the :py:class:`musixmatch.api.Method`
+    track. It can get lyrics through the :py:class:`musixmatch.api.Method`
     **track.lyrics.get** or from an already well-formed :py:class:`dict`.
     Create a Track object based on a given keyword argument:
 

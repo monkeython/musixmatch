@@ -1,8 +1,6 @@
-import unittest
 from musixmatch import album
 from musixmatch import api
 from tests import base
-
 
 class TestAlbum(base.TestItem):
     Class = album.Album

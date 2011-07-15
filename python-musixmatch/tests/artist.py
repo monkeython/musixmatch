@@ -1,8 +1,5 @@
-import unittest
-from musixmatch import artist
-from musixmatch import api
+from musixmatch import *
 from tests import base
-
 
 class TestArtist(base.TestItem):
     Class = artist.Artist

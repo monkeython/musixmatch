@@ -1,7 +1,6 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Track or an
-ArtistsCollection.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing a Track or a TracksCollection.
 
 >>> from musixmatch.track import Track, TracksCollection
 >>> 
@@ -9,18 +8,15 @@ ArtistsCollection.
 >>> collection = TracksCollection.fromChart(country=us, page=1)
 """
 from musixmatch import __license__, __author__
-from musixmatch import base
-from musixmatch.ws import track, matcher
-from musixmatch import lyrics
-from musixmatch import subtitle
-import pprint
+from musixmatch import api, base, lyrics, subtitle
+from musixmatch.ws import track, matcher, album
 
 _marker=object()
 
 class Track(base.Item):
     """
     This class builds a :py:class:`dict` like object representing a track. It
-    can get track informations trough the :py:class:`musixmatch.api.Method`
+    can get track informations through the :py:class:`musixmatch.api.Method`
     **track.get** or from an already well-formed :py:class:`dict`. Create a
     Track object based on a given keyword argument:
 
@@ -49,7 +45,7 @@ class Track(base.Item):
     __api_method__ = track.get
     
     @classmethod
-    def fromMatcher(self, **keywords):
+    def fromMatcher(cls, **keywords):
         """
         Returns a :py:class:`Track` based on the result of the
         :py:class:`musiXmatch.api.Method` **matcher.track.get**. Accepts the
@@ -58,7 +54,7 @@ class Track(base.Item):
         :param q_track: words to be searched among track titles
         :param q_artist: words to be searched among artist names
         """
-        return self.fromResponseMessage(matcher.track.get(**keywords))
+        return cls.fromResponseMessage(matcher.track.get(**keywords))
 
     def get(self, key, default=_marker):
         """
@@ -99,7 +95,7 @@ class Track(base.Item):
             'wrong_attribution', 'bad_characters', 'lines_too_long',
             'wrong_verses', 'wrong_formatting' ]
         if feedback in accepted:
-            message = ws.track.lyrics.feedback.post(
+            message = track.lyrics.feedback.post(
                 track_id=self['track_id'],
                 lyrics_id=self['track_id']['lyrics']['lyrics_id'],
                 feedback=feedback
@@ -117,17 +113,17 @@ class TracksCollection(base.ItemsCollection):
     __allowedin__ = Track
 
     @classmethod
-    def fromAlbum(self, **keywords):
+    def fromAlbum(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **album.tracks.get** :py:class:`musixmatch.api.Method` call.
 
         :param album_id: musiXmatch album ID
         """
-        return self.fromResponseMessage(album.tracks.get(**keywords))
+        return cls.fromResponseMessage(album.tracks.get(**keywords))
 
     @classmethod
-    def fromSearch(self, **keywords):
+    def fromSearch(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **track.search** :py:class:`musixmatch.api.Method` call.
@@ -150,10 +146,10 @@ class TracksCollection(base.ItemsCollection):
                               0.9. A value of 0.9 means: 'match at least 90
                               percent of the words'.
         """
-        return self.fromResponseMessage(track.search(**keywords))
+        return cls.fromResponseMessage(track.search(**keywords))
 
     @classmethod
-    def fromChart(self, **keywords):
+    def fromChart(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **track.chart.get** :py:class:`musixmatch.api.Method` call.
@@ -164,4 +160,4 @@ class TracksCollection(base.ItemsCollection):
         :param f_has_lyrics: exclude tracks without an available lyrics
                              (automatic if q_lyrics is set)
         """
-        return self.fromResponseMessage(track.chart.get(**keywords))
+        return cls.fromResponseMessage(track.chart.get(**keywords))

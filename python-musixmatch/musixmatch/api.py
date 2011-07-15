@@ -3,11 +3,8 @@ This module define the base API classes, and the module variable *version*
 which is used to build the request URL.
 """
 from musixmatch import __author__, __license__, nothing
-from UserDict import UserDict
 from urllib import urlencode, urlopen
-from xml.dom.minidom import parseString
 from contextlib import contextmanager
-import sys
 import os
 try:
     import json
@@ -210,7 +207,8 @@ class QueryString(dict):
     >>> repr(QueryString({ 'country': 'it', 'page': 1, 'apikey': 'whatever'}))
     "QueryString({'country': 'it', 'page': 1})"
     """
-    def __init__(self, items={}, **keywords):
+    def __init__(self, items=None, **keywords):
+        items = items or dict()
         dict.__init__(self, items, **keywords)
         for k in self:
             self[k] = str(self[k]).encode('utf-8')
@@ -331,7 +329,8 @@ class Request(object):
     2. if no environment variable is defined, module variable **version** is
        used.
     """
-    def __init__ (self, api_method, query_string={}, **keywords):
+    def __init__ (self, api_method, query_string=None, **keywords):
+        query_string = query_string or dict()
         if not isinstance(query_string, QueryString):
             query_string = QueryString(query_string)
         if not isinstance(api_method, Method):

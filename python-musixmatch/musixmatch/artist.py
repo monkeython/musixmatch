@@ -1,23 +1,20 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Artist or an
-ArtistsCollection.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing an Artist or an ArtistsCollection.
 
 >>> from musixmatch.artist import Artist, ArtistsCollection
 >>> 
 >>> artist = Artist(artist_id=292)
 >>> collection = ArtistsCollection.fromChart(country=it, page=1)
 """
-
 from musixmatch import __license__, __author__
 from musixmatch import base
 from musixmatch.ws import artist
-import pprint
 
 class Artist(base.Item):
     """
     This class build a :py:class:`dict` like object representing an artist. It
-    can get artist informations trough the :py:class:`musixmatch.api.Method`
+    can get artist informations through the :py:class:`musixmatch.api.Method`
     **artist.get** or from an already well-formed :py:class:`dict`. Create an
     Artist object based on a given keyword argument:
 
@@ -41,7 +38,7 @@ class ArtistsCollection(base.ItemsCollection):
     __allowedin__ = Artist
 
     @classmethod
-    def fromSearch(self, **keywords):
+    def fromSearch(cls, **keywords):
         """
         This classmethod builds an :py:class:`ArtistsCollection` from a
         **artist.search** :py:class:`musixmatch.api.Method` call.
@@ -59,10 +56,10 @@ class ArtistsCollection(base.ItemsCollection):
         :param f_artist_mbid: filter the results by the artist_mbid
         :rtype: :py:class:`ArtistsCollection`
         """
-        return self.fromResponseMessage(artist.search(**keywords))
+        return cls.fromResponseMessage(artist.search(**keywords))
 
     @classmethod
-    def fromChart(self, **keywords):
+    def fromChart(cls, **keywords):
         """
         This classmethod builds an :py:class:`ArtistsCollection` from a
         **artist.chart.get** :py:class:`musixmatch.api.Method` call.
@@ -72,5 +69,5 @@ class ArtistsCollection(base.ItemsCollection):
         :param country: the country code of the desired country chart
         :rtype: :py:class:`ArtistsCollection`
         """
-        return self.fromResponseMessage(artist.chart.get(**keywords))
+        return cls.fromResponseMessage(artist.chart.get(**keywords))
 
