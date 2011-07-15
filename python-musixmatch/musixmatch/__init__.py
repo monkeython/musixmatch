@@ -39,7 +39,6 @@ __doc__ = """
 :address: Via San Donato 10, 40127 Bologna (BO), Italy
 :organization: Monkeython
 :contact: http://www.monkeython.com
-:date: 2011-06-15
 :copyright: %s
 """ % (__version__, __author__, __license__)
 

@@ -9,9 +9,6 @@ api module
    .. autoexception:: Error
       :show-inheritance:
 
-   .. autoexception:: ResponseError
-      :show-inheritance:
-
    .. autoexception:: ResponseMessageError
       :show-inheritance:
 
@@ -31,5 +28,5 @@ api module
 
    .. autoclass:: Request
       :undoc-members:
-      :members: query_string, api_method, getResponse, getResponseMessage
+      :members: query_string, api_method, response
 

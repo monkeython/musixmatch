@@ -363,10 +363,8 @@ class Request(object):
     @property
     def response(self):
         """
-        Runs the request and collects the response message.
-        
-        :returns: :py:class:`ResponseMessage` based on the **format**
-        key in the :py:class:`QueryString`.
+        The :py:class:`ResponseMessage` based on the **format** key in the
+        :py:class:`QueryString`.
         """
         if self.__response is None:
 

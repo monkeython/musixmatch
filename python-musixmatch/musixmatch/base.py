@@ -88,10 +88,10 @@ class Item(Base, dict):
         """
         if not message.status_code:
             raise api.Error(str(message.status_code))
-        return self.fromDiconary(message['body'][self.label()])
+        return self.fromDictionary(message['body'][self.label()])
 
     @classmethod
-    def fromDiconary(self, dictionary, **keywords):
+    def fromDictionary(self, dictionary, **keywords):
         """
         Returns an object instance, built from a :py:class:`dict`
         """
@@ -173,7 +173,7 @@ class ItemsCollection(Base, list):
     def insert(self, key, item):
         allowed = self.allowedin()
         if not isinstance(item, allowed):
-            item = allowed.fromDiconary(item)
+            item = allowed.fromDictionary(item)
         if not item in self:
             list.insert(self, key, item)
 

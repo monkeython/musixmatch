@@ -29,12 +29,13 @@ Once built, you can use easy_install on the python egg.
 
 Documentation
 =============
-You can generate your own local copy of the documentation using `Sphinx`_
-trough the setup.py::
+You can read documentation online_, or generate your own local copy using
+`Sphinx`_ trough the setup.py::
 
    prompt $ python setup.py build_sphinx
 
 .. _Sphinx: http://sphinx.pocoo.org
+.. _online: http://projects.monkeython.com/musixmatch/python-musixmatch/html/index.html
 
 Unit testing
 ============

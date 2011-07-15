@@ -23,21 +23,21 @@ class TestItem(TestBase):
     #     self.assertEqual(success[item_id],
     #         self.success['body'][self.label()][self.item_id])
     def test_fromDiconary(self):
-        item = self.Class.fromDiconary(self.item)
+        item = self.Class.fromDictionary(self.item)
         # Data integrity
         for k in self.item.keys():
             self.assertEqual(item[k], self.item[k])
 
     def test__str__(self):
-        item = self.Class.fromDiconary(self.item)
+        item = self.Class.fromDictionary(self.item)
         self.assertEqual(str(item),self.item_str)
 
     def test__repr__(self):
-        item = self.Class.fromDiconary(self.item)
+        item = self.Class.fromDictionary(self.item)
         self.assertEqual(repr(item),self.item_repr)
 
     def test__hash__(self):
-        item = self.Class.fromDiconary(self.item)
+        item = self.Class.fromDictionary(self.item)
         self.assertEqual(hash(item), self.item_hash)
 
 class TestCollection(unittest.TestCase):
@@ -96,7 +96,7 @@ class TestCollection(unittest.TestCase):
     def test_append(self):
         collection = self.Class()
         saved = self.message['body'][self.item_list][1][self.item]
-        item = self.AllowedContent.fromDiconary(saved)
+        item = self.AllowedContent.fromDictionary(saved)
         collection.append(item)
         # Item correctly appended
         self.assertEqual(collection[0], item)
