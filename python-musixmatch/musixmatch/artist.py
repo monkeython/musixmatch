@@ -38,7 +38,7 @@ class ArtistsCollection(base.ItemsCollection):
     __allowedin__ = Artist
 
     @classmethod
-    def fromSearch(self, **keywords):
+    def fromSearch(cls, **keywords):
         """
         This classmethod builds an :py:class:`ArtistsCollection` from a
         **artist.search** :py:class:`musixmatch.api.Method` call.
@@ -56,10 +56,10 @@ class ArtistsCollection(base.ItemsCollection):
         :param f_artist_mbid: filter the results by the artist_mbid
         :rtype: :py:class:`ArtistsCollection`
         """
-        return self.fromResponseMessage(artist.search(**keywords))
+        return cls.fromResponseMessage(artist.search(**keywords))
 
     @classmethod
-    def fromChart(self, **keywords):
+    def fromChart(cls, **keywords):
         """
         This classmethod builds an :py:class:`ArtistsCollection` from a
         **artist.chart.get** :py:class:`musixmatch.api.Method` call.
@@ -69,5 +69,5 @@ class ArtistsCollection(base.ItemsCollection):
         :param country: the country code of the desired country chart
         :rtype: :py:class:`ArtistsCollection`
         """
-        return self.fromResponseMessage(artist.chart.get(**keywords))
+        return cls.fromResponseMessage(artist.chart.get(**keywords))
 

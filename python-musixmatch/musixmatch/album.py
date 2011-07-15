@@ -41,7 +41,7 @@ class AlbumsCollection(base.ItemsCollection):
     __allowedin__ = Album
 
     @classmethod
-    def fromArtist(self, **keywords):
+    def fromArtist(cls, **keywords):
         """
         This classmethod builds an :py:class:`AlbumsCollection` from a
         **artist.albums.get** :py:class:`musixmatch.api.Method` call.
@@ -51,5 +51,5 @@ class AlbumsCollection(base.ItemsCollection):
         :param s_release_date: sort albums by release date
         :rtype: :py:class:`AlbumsCollection`
         """
-        return self.fromResponseMessage(artist.albums.get(**keywords))
+        return cls.fromResponseMessage(artist.albums.get(**keywords))
 

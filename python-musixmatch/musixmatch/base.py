@@ -25,21 +25,21 @@ class Base(object):
     """
 
     @classmethod
-    def label(self):
+    def label(cls):
         """
         Returns the label that should be used as keyword in the
         :py:class:`musixmatch.api.JsonResponseMessage` body.
         """
-        return getattr(self, '__label__', self.__name__.lower())
+        return getattr(cls, '__label__', cls.__name__.lower())
 
     @classmethod
-    def apiMethod(self):
+    def apiMethod(cls):
         """
         Returns the :py:class:`musixmatch.api.Method` that should be used to
         build the object. Defaults to *label.get* where *label* is the result
         from :py:meth:`label`
         """
-        api_method = getattr(self, '__api_method__', '%s.%s' % (self.label(),'get'))
+        api_method = getattr(cls, '__api_method__', '%s.%s' % (cls.label(),'get'))
         if not isinstance(api_method, api.Method):
             api_method = api.Method(str(api_method))
         return api_method
@@ -79,21 +79,21 @@ class Item(Base, dict):
         return int(self['%s_id' % type(self).label()])
 
     @classmethod
-    def fromResponseMessage(self, message):
+    def fromResponseMessage(cls, message):
         """
         Returns an object instance, built from a
         :py:class:`musixmatch.api.ResponseMessage`
         """
         if not message.status_code:
             raise api.Error(str(message.status_code))
-        return self.fromDictionary(message['body'][self.label()])
+        return cls.fromDictionary(message['body'][cls.label()])
 
     @classmethod
-    def fromDictionary(self, dictionary, **keywords):
+    def fromDictionary(cls, dictionary, **keywords):
         """
         Returns an object instance, built from a :py:class:`dict`
         """
-        item = self()
+        item = cls()
         dict.update(item, dictionary, **keywords)
         return item
 
@@ -210,27 +210,27 @@ class ItemsCollection(Base, list):
         return more and pages + 1 or pages
 
     @classmethod
-    def fromResponseMessage(self, message):
+    def fromResponseMessage(cls, message):
         """
         Returns an object instance, built on a
         :py:class:`musixmatch.api.ResponseMessage`
         """
         if not message.status_code:
             raise api.Error(str(message.status_code))
-        list_label = self.label()
-        item_label = self.allowedin().label()
+        list_label = cls.label()
+        item_label = cls.allowedin().label()
         items = [ i[item_label] for i in message['body'][list_label] ]
-        return self(*items)
+        return cls(*items)
 
     @classmethod
-    def allowedin(self):
+    def allowedin(cls):
         """
         Returns the allowed content class. Defaults to :py:class:`Item`
         """
-        return self.__allowedin__
+        return cls.__allowedin__
 
     @classmethod
-    def label(self):
-        item_name = self.allowedin().label()
+    def label(cls):
+        item_name = cls.allowedin().label()
         return '%s_list' % item_name
 

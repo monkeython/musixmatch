@@ -8,8 +8,8 @@ simple dictionary-like objects representing a Track or a TracksCollection.
 >>> collection = TracksCollection.fromChart(country=us, page=1)
 """
 from musixmatch import __license__, __author__
-from musixmatch import base, lyrics, subtitle
-from musixmatch.ws import track, matcher
+from musixmatch import api, base, lyrics, subtitle
+from musixmatch.ws import track, matcher, album
 
 _marker=object()
 
@@ -45,7 +45,7 @@ class Track(base.Item):
     __api_method__ = track.get
     
     @classmethod
-    def fromMatcher(self, **keywords):
+    def fromMatcher(cls, **keywords):
         """
         Returns a :py:class:`Track` based on the result of the
         :py:class:`musiXmatch.api.Method` **matcher.track.get**. Accepts the
@@ -54,7 +54,7 @@ class Track(base.Item):
         :param q_track: words to be searched among track titles
         :param q_artist: words to be searched among artist names
         """
-        return self.fromResponseMessage(matcher.track.get(**keywords))
+        return cls.fromResponseMessage(matcher.track.get(**keywords))
 
     def get(self, key, default=_marker):
         """
@@ -113,17 +113,17 @@ class TracksCollection(base.ItemsCollection):
     __allowedin__ = Track
 
     @classmethod
-    def fromAlbum(self, **keywords):
+    def fromAlbum(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **album.tracks.get** :py:class:`musixmatch.api.Method` call.
 
         :param album_id: musiXmatch album ID
         """
-        return self.fromResponseMessage(album.tracks.get(**keywords))
+        return cls.fromResponseMessage(album.tracks.get(**keywords))
 
     @classmethod
-    def fromSearch(self, **keywords):
+    def fromSearch(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **track.search** :py:class:`musixmatch.api.Method` call.
@@ -146,10 +146,10 @@ class TracksCollection(base.ItemsCollection):
                               0.9. A value of 0.9 means: 'match at least 90
                               percent of the words'.
         """
-        return self.fromResponseMessage(track.search(**keywords))
+        return cls.fromResponseMessage(track.search(**keywords))
 
     @classmethod
-    def fromChart(self, **keywords):
+    def fromChart(cls, **keywords):
         """
         This classmethod builds an :py:class:`TracksCollection` from a
         **track.chart.get** :py:class:`musixmatch.api.Method` call.
@@ -160,4 +160,4 @@ class TracksCollection(base.ItemsCollection):
         :param f_has_lyrics: exclude tracks without an available lyrics
                              (automatic if q_lyrics is set)
         """
-        return self.fromResponseMessage(track.chart.get(**keywords))
+        return cls.fromResponseMessage(track.chart.get(**keywords))
