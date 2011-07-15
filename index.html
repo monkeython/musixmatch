@@ -9,7 +9,6 @@
         body {
             background-color: #133F52;
             color: #FFFFFF;
-            font-family: 'Cabin Sketch', arial, serif;
             /* font-family: 'Slackey', arial, serif; */
         }
         span.monke {
@@ -18,9 +17,16 @@
         span.ython {
             color: #FFED60;
         }
+        h1, h2 {
+            font-family: 'Cabin Sketch', arial, serif;
+        }
         #header {
             width: 600px;
-            margin: 108px auto;
+            /* margin: 108px auto; */
+            margin-top: 108px;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
         }
         #header > h1 {
             text-align: right;
@@ -32,20 +38,47 @@
             text-align: right;
         }
         #footer {
+            font-family: 'Cabin Sketch', arial, serif;
             text-align: center;
             font-size: smaller;
             margin: 0 auto;
         }
+        #body {
+            padding: 1px;
+            background-color: #FFFFFF;
+            color: #111111;
+            width: 1024px;
+            margin: 20px auto;
+            /* box-shadow: 0px 0px 5px 5px #11303D; */
+            box-shadow: 0px 0px 10px 0px #dddddd;
+            border-radius: 10px;
+        }
+        #content {
+            border-radius: 10px;
+            border: thin dotted #aaaaaa;
+            padding: 19px;
+            margin: 0px;
+        }
+        :link, :visited {
+            color: #3882BE;
+            text-decoration: none;
+        }
+        :hover {
+            color: #3882BE;
+            text-decoration: underline;
+        }
+
         -->
         </style>
     </head>
-    <body align="center">
+    <body>
         <div id="header">
             <h1><span class="monke">Monke</span><span class="ython">ython</span></h1>
             <h2>An Agile Python developer</h2>
         </div>
         <a href="http://projects.monkeython.com/musixmatch/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="fork-me.png" alt="Fork me on GitHub"></a>
-        <div id="content">
+        <div id="body">
+            <div id="content">
 
         <h1>Why Musixmatch API interface</h1>
         <p>It all started because I've known many <a
@@ -69,6 +102,7 @@
         <p>Product.Musixmatch: <a href="http://plone.org">Plone</a> Product</p>
         <p>Work in progress for: <a href="http://turbogears.org">Turbogears</a>, <a href="http://pylonsproject.org">Pylons/Pyramid</a>, <a href="https://www.djangoproject.com">Django</a>, <a href="http://grok.zope.org">Grok</a></p>
 
+            </div>
         </div>
         <div id="footer">Copyright 2011&copy; Luca De Vitis</div>
     </body>
