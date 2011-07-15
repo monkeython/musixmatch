@@ -16,14 +16,6 @@ except ImportError:
 
 version = os.environ.get('musixmatch_apiversion', '1.1')
 
-@contextmanager
-def request(url):
-    try:
-        response = urlopen(url)
-        yield response
-    finally:
-        response.close()
-
 class Error(Exception):
     """Base musiXmatch API error."""
 
@@ -37,9 +29,6 @@ class Error(Exception):
     def __repr__(self):
         name = self.__class__.__name__
         return '%s%r' % (name, self.args)
-
-class ResponseError(Error):
-    """Represents errors occurred while trying to get the remote resource."""
 
 class ResponseMessageError(Error):
     """Represents errors occurred while parsing the response messages."""
@@ -108,8 +97,7 @@ class ResponseStatusCode(int):
     }
 
     def __str__(self):
-        return self.__status__.get(self,
-            'Unknown status code %i!' % self)
+        return self.__status__.get(self, 'Unknown status code %i!' % self)
 
     def __repr__(self):
         return 'ResponseStatusCode(%i)' % self
@@ -292,15 +280,14 @@ class Method(str):
         else:
             return Method('.'.join([self, name]))
 
-    def __call__ (self, apikey=None, format=None, **keywords):
+    def __call__ (self, apikey=None, format=None, **query):
         if apikey is None:
             apikey = os.environ.get('musixmatch_apikey')
-        keywords.setdefault('apikey', apikey)
+        query.setdefault('apikey', apikey)
         if format is None:
             format = os.environ.get('musixmatch_format', 'json')
-        keywords.setdefault('format', format)
-        _request = Request(self, keywords)
-        return _request.getResponseMessage()
+        query.setdefault('format', format)
+        return Request(self, query).response
 
     def __repr__(self):
         return "Method('%s')" % self
@@ -309,7 +296,7 @@ class Request(object):
     """
     This is the main API class. Given a :py:class:`Method` or a method name, a
     :py:class:`QueryString` or a :py:class:`dict`, it can build the API query
-    URL, run the request and return the resposne either as a string or as a
+    URL, run the request and return the response either as a string or as a
     :py:class:`ResponseMessage` subclass. Assuming the default api version, this
     class try to build a proper request:
 
@@ -339,9 +326,10 @@ class Request(object):
 
     API version is determined as follow:
 
-    1. if environment varaible **musixmatch_apiversion** is defined, it is used.
-    2. if no environment variable is defined, version is guessed from arguments.
-    3. if version argument is not defined, default is used.
+    1. if environment varaible **musixmatch_apiversion** is defined, it is
+       used.
+    2. if no environment variable is defined, module variable **version** is
+       used.
     """
     def __init__ (self, api_method, query_string={}, **keywords):
         if not isinstance(query_string, QueryString):
@@ -363,33 +351,38 @@ class Request(object):
         """The :py:class:`QueryString` instance."""
         return self.__query_string
 
-    def getResponse(self):
-        """
-        Run the requsts and collects the response message as a
-        :py:class:`string`.
-        """
+    @contextmanager
+    def _received(self):
+        """A context manager to handle url opening"""
+        try:
+            response = urlopen(str(self))
+            yield response
+        finally:
+            response.close()
 
-        if self.__response is None:
-            url = str(self)
-            try:
-                self.__response = urlopen(url).read()
-            except Exception, e:
-                raise Error(u'Could not open API URL %s: %s' %  (url, e))
-        return self.__response
-
-    def getResponseMessage(self):
+    @property
+    def response(self):
         """
-        Returns a proper :py:class:`ResponseMessage` based on the **format**
+        Runs the request and collects the response message.
+        
+        :returns: :py:class:`ResponseMessage` based on the **format**
         key in the :py:class:`QueryString`.
         """
-        ResponseMessageClass = {
-            'json': JsonResponseMessage,
-        #    'xml': XMLResponseMessage,
-        }.get(self.query_string.get('format'), None)
-        if ResponseMessageClass:
-            return ResponseMessageClass(self.getResponse())
-        else:
-            raise ResponseMessageError("Unsupported format `%s'" % format)
+        if self.__response is None:
+
+            format = self.query_string.get('format')
+            ResponseMessageClass = {
+                'json': JsonResponseMessage,
+            #    'xml': XMLResponseMessage,
+            }.get(format, None)
+
+            if not ResponseMessageClass:
+                raise ResponseMessageError("Unsupported format `%s'" % format)
+
+            with self._received() as message:
+                self.__response = ResponseMessageClass(message.read())
+
+        return self.__response
 
     def __repr__(self):
         return 'Request(%r, %r)' % (self.api_method, self.query_string)
