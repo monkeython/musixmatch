@@ -8,7 +8,7 @@ Welcome to Python musiXmatch's documentation!
 
 .. automodule:: musixmatch.__init__
 
-.. include:: ../README.txt
+.. include:: ../README.rst
 
 Package API
 ===========
