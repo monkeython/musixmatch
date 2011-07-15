@@ -1,7 +1,6 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Track or an
-ArtistsCollection.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing a Track or a TracksCollection.
 
 >>> from musixmatch.track import Track, TracksCollection
 >>> 
@@ -9,18 +8,15 @@ ArtistsCollection.
 >>> collection = TracksCollection.fromChart(country=us, page=1)
 """
 from musixmatch import __license__, __author__
-from musixmatch import base
+from musixmatch import base, lyrics, subtitle
 from musixmatch.ws import track, matcher
-from musixmatch import lyrics
-from musixmatch import subtitle
-import pprint
 
 _marker=object()
 
 class Track(base.Item):
     """
     This class builds a :py:class:`dict` like object representing a track. It
-    can get track informations trough the :py:class:`musixmatch.api.Method`
+    can get track informations through the :py:class:`musixmatch.api.Method`
     **track.get** or from an already well-formed :py:class:`dict`. Create a
     Track object based on a given keyword argument:
 
@@ -99,7 +95,7 @@ class Track(base.Item):
             'wrong_attribution', 'bad_characters', 'lines_too_long',
             'wrong_verses', 'wrong_formatting' ]
         if feedback in accepted:
-            message = ws.track.lyrics.feedback.post(
+            message = track.lyrics.feedback.post(
                 track_id=self['track_id'],
                 lyrics_id=self['track_id']['lyrics']['lyrics_id'],
                 feedback=feedback

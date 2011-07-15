@@ -3,11 +3,8 @@ This module define the base API classes, and the module variable *version*
 which is used to build the request URL.
 """
 from musixmatch import __author__, __license__, nothing
-from UserDict import UserDict
 from urllib import urlencode, urlopen
-from xml.dom.minidom import parseString
 from contextlib import contextmanager
-import sys
 import os
 try:
     import json

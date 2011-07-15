@@ -8,8 +8,6 @@ This module contains tha base classes for the Musixmatch API generated content:
 """
 from musixmatch import __license__, __author__
 from musixmatch import api
-import random
-import sys
 import pprint
 
 class Base(object):

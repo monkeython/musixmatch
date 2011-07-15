@@ -1,23 +1,20 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Album or an
-AlbumsCollection.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing an Album or an AlbumsCollection.
 
 >>> from musixmatch.album import Album, AlbumsCollection
 >>> 
 >>> album = Album(album_id=292)
 >>> collection = AlbumsCollection.fromArtist(country=it, page=1)
 """
-
 from musixmatch import __license__, __author__
 from musixmatch import base
-from musixmatch.ws import album
-import pprint
+from musixmatch.ws import album, artist
 
 class Album(base.Item):
     """
     This class build a :py:class:`dict` like object representing an album. It
-    can get album informations trough the :py:class:`musixmatch.api.Method`
+    can get album informations through the :py:class:`musixmatch.api.Method`
     **album.get** or from an already well-formed :py:class:`dict`. Create an
     Album object based on a given keyword argument:
 

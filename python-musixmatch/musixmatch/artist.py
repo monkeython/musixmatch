@@ -1,23 +1,20 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the an Artist or an
-ArtistsCollection.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing an Artist or an ArtistsCollection.
 
 >>> from musixmatch.artist import Artist, ArtistsCollection
 >>> 
 >>> artist = Artist(artist_id=292)
 >>> collection = ArtistsCollection.fromChart(country=it, page=1)
 """
-
 from musixmatch import __license__, __author__
 from musixmatch import base
 from musixmatch.ws import artist
-import pprint
 
 class Artist(base.Item):
     """
     This class build a :py:class:`dict` like object representing an artist. It
-    can get artist informations trough the :py:class:`musixmatch.api.Method`
+    can get artist informations through the :py:class:`musixmatch.api.Method`
     **artist.get** or from an already well-formed :py:class:`dict`. Create an
     Artist object based on a given keyword argument:
 

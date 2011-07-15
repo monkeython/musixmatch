@@ -1,6 +1,6 @@
 """
-This module contains higherl level classes to query Musixmatch API and build
-simple dictionaly like objects representing the a track subtitle.
+This module contains higher level classes to query Musixmatch API and build
+simple dictionary-like objects representing a track subtitle.
 
 >>> from musixmatch.subtitle import Subtitle
 >>> 
@@ -13,7 +13,7 @@ from musixmatch.ws import track
 class Subtitle(base.Item):
     """
     This class builds a :py:class:`dict` object representing a subtitle of a
-    track. It can get subtitle trough the :py:class:`musixmatch.api.Method`
+    track. It can get subtitle through the :py:class:`musixmatch.api.Method`
     **track.subtitle.get** or from an already well-formed :py:class:`dict`.
     Create a Track object based on a given keyword argument:
 
