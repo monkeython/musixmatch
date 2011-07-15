@@ -1,6 +1,4 @@
-import unittest
-from musixmatch import subtitle
-from musixmatch import api
+from musixmatch import *
 from tests import base
 
 class TestSubtitle(base.TestItem):

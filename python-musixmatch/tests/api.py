@@ -1,5 +1,5 @@
 import unittest
-from musixmatch import api
+from musixmatch import *
 
 class TestError(unittest.TestCase):
 

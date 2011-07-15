@@ -1,6 +1,5 @@
 import unittest
-from musixmatch import base
-from musixmatch import api
+from musixmatch import *
 
 class TestBase(unittest.TestCase):
 
@@ -22,7 +21,7 @@ class TestItem(TestBase):
     #     success = self.Class.fromResponseMessage(self.success)
     #     self.assertEqual(success[item_id],
     #         self.success['body'][self.label()][self.item_id])
-    def test_fromDiconary(self):
+    def test_fromDictionary(self):
         item = self.Class.fromDictionary(self.item)
         # Data integrity
         for k in self.item.keys():

@@ -1,6 +1,4 @@
-import unittest
-from musixmatch import lyrics
-from musixmatch import api
+from musixmatch import *
 from tests import base
 
 class TestLyrics(base.TestItem):
