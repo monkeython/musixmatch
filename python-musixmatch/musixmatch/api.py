@@ -2,7 +2,11 @@
 This module define the base API classes, and the module variable *version*
 which is used to build the request URL.
 """
-from musixmatch import __author__, __license__, nothing
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+nothing = musixmatch.nothing
+
 from urllib import urlencode, urlopen
 from contextlib import contextmanager
 import os

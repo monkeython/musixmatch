@@ -7,11 +7,14 @@ simple dictionary-like objects representing an Artist or an ArtistsCollection.
 >>> artist = Artist(artist_id=292)
 >>> collection = ArtistsCollection.fromChart(country=it, page=1)
 """
-from musixmatch import __license__, __author__
-from musixmatch import base
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
+from musixmatch.base import Item, ItemsCollection
 from musixmatch.ws import artist
 
-class Artist(base.Item):
+class Artist(Item):
     """
     This class build a :py:class:`dict` like object representing an artist. It
     can get artist information through the :py:class:`musixmatch.api.Method`
@@ -30,7 +33,7 @@ class Artist(base.Item):
     """
     __api_method__ = artist.get
 
-class ArtistsCollection(base.ItemsCollection):
+class ArtistsCollection(ItemsCollection):
     """
     This class build a :py:class:`list` like object representing an artists
     collection. It accepts :py:class:`dict` or :py:class:`Artist` objects.

@@ -10,7 +10,10 @@ or
 >>> from musixmatch.ws import artist
 >>> it_artist_chart = artist.chart.get(country='it', page=1, page_size=3)
 """
-from musixmatch import __license__, __author__
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
 from musixmatch import api
 
 artist = api.Method('artist')

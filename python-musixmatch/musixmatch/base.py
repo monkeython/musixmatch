@@ -6,7 +6,10 @@ This module contains tha base classes for the Musixmatch API generated content:
 * :py:class:`musixmatch.lyrics.Lyrics`
 * :py:class:`musixmatch.subtitle.Subtitle`
 """
-from musixmatch import __license__, __author__
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
 from musixmatch import api
 import pprint
 
@@ -67,7 +70,7 @@ class Item(Base, dict):
             dict.update(self, dictionary)
         elif keywords:
             message = self.apiMethod()(**keywords)
-            dict.update(self, type(self).fromResponseMessage(message))
+            dict.update(self, self.fromResponseMessage(message))
 
     def __str__(self):
         return pprint.pformat(dict(self),4,1)
@@ -76,7 +79,7 @@ class Item(Base, dict):
         return '%s(%r)' % (type(self).__name__, dict(self))
 
     def __hash__(self):
-        return int(self['%s_id' % type(self).label()])
+        return int(self['%s_id' % self.label()])
 
     @classmethod
     def fromResponseMessage(cls, message):

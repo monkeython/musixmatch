@@ -6,11 +6,14 @@ simple dictionary-like objects representing a track lyrics.
 >>> 
 >>> lyrics = Lyrics(lyrics_id=292)
 """
-from musixmatch import __license__, __author__
-from musixmatch import base
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
+from musixmatch.base import Item
 from musixmatch.ws import track
 
-class Lyrics(base.Item):
+class Lyrics(Item):
     """
     This class builds a :py:class:`dict` object representing a the lyrics of a
     track. It can get lyrics through the :py:class:`musixmatch.api.Method`

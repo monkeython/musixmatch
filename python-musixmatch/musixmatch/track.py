@@ -7,13 +7,17 @@ simple dictionary-like objects representing a Track or a TracksCollection.
 >>> track = Track(track_mbid=8976)
 >>> collection = TracksCollection.fromChart(country=us, page=1)
 """
-from musixmatch import __license__, __author__
-from musixmatch import api, base, lyrics, subtitle
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
+from musixmatch import api, lyrics, subtitle
+from musixmatch.base import Item, ItemsCollection
 from musixmatch.ws import track, matcher, album
 
 _marker=object()
 
-class Track(base.Item):
+class Track(Item):
     """
     This class builds a :py:class:`dict` like object representing a track. It
     can get track information through the :py:class:`musixmatch.api.Method`
@@ -105,7 +109,7 @@ class Track(base.Item):
         else:
             raise TypeError, '%r not in %r' % (feedback, accepted)
 
-class TracksCollection(base.ItemsCollection):
+class TracksCollection(ItemsCollection):
     """
     This class build a :py:class:`list` like object representing a tracks
     collection. It accepts :py:class:`dict` or :py:class:`Track` objects.
