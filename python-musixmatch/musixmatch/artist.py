@@ -14,7 +14,7 @@ from musixmatch.ws import artist
 class Artist(base.Item):
     """
     This class build a :py:class:`dict` like object representing an artist. It
-    can get artist informations through the :py:class:`musixmatch.api.Method`
+    can get artist information through the :py:class:`musixmatch.api.Method`
     **artist.get** or from an already well-formed :py:class:`dict`. Create an
     Artist object based on a given keyword argument:
 
@@ -22,7 +22,7 @@ class Artist(base.Item):
     :param artist_mbid: Musicbrainz artist ID
     :param artist_data: an already well-formed :py:class:`dict` of artist data.
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword artist_id: musiXmatch artist ID
     :keyword artist_mbid: Musicbrainz artist ID

@@ -16,7 +16,7 @@ _marker=object()
 class Track(base.Item):
     """
     This class builds a :py:class:`dict` like object representing a track. It
-    can get track informations through the :py:class:`musixmatch.api.Method`
+    can get track information through the :py:class:`musixmatch.api.Method`
     **track.get** or from an already well-formed :py:class:`dict`. Create a
     Track object based on a given keyword argument:
 
@@ -26,7 +26,7 @@ class Track(base.Item):
     :param track_data: an already well-formed :py:class:`dict` of track data
     :raises: :py:exc:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseStatusCode` is not 200
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword track_id: musiXmatch track ID
     :keyword track_mbid: Musicbrainz track ID

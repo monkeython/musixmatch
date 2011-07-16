@@ -23,7 +23,7 @@ class Subtitle(base.Item):
     :param subtitle_data: an already well-formed :py:class:`dict` of track data
     :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseMessageError` is not 200
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword subtitle_body: the subtitle text
     :keyword subtitle_id: the Musixmatch subtitle id

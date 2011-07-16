@@ -151,7 +151,7 @@ class ResponseMessage(dict):
 # 
 #     def __getattribute__(self, name):
 #         """
-#         Customize class beviour by passing any attribute access request to
+#         Customize class behaviour by passing any attribute access request to
 #         internal :py:class:`xml.dom.minidom.Document` instance.
 #         """
 #         if name.startswith('_') or name == 'getResponseStatusCode':
@@ -167,7 +167,7 @@ class JsonResponseMessage(ResponseMessage, dict):
     A :py:class:`ResponseMessage` subclass which behaves like a
     :py:class:`dict` to expose the Json structure contained in the response
     message.  Parses the Json response message and build a proper python
-    :py:class:`dict` containing all the informations. Also, setup a
+    :py:class:`dict` containing all the information. Also, setup a
     :py:class:`ResponseStatusCode` by querying the :py:class:`dict` for the
     *['header']['status_code']* item.
     """
@@ -260,7 +260,7 @@ class Method(str):
 
     Calling a :py:class:`Method` as a function with positional
     arguments, builds a :py:class:`Request`, runs it and returns the result.
-    It uses itself to determin the API method name and version, and the
+    It uses itself to determine the API method name and version, and the
     *keywords* arguments for the query string. If **apikey** is
     undefined, environment variable **musixmatch_apikey** will be used. If
     **format** is undefined, environment variable **musixmatch_format**
@@ -324,7 +324,7 @@ class Request(object):
 
     API version is determined as follow:
 
-    1. if environment varaible **musixmatch_apiversion** is defined, it is
+    1. if environment variable **musixmatch_apiversion** is defined, it is
        used.
     2. if no environment variable is defined, module variable **version** is
        used.

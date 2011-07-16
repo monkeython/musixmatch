@@ -14,14 +14,14 @@ from musixmatch.ws import album, artist
 class Album(base.Item):
     """
     This class build a :py:class:`dict` like object representing an album. It
-    can get album informations through the :py:class:`musixmatch.api.Method`
+    can get album information through the :py:class:`musixmatch.api.Method`
     **album.get** or from an already well-formed :py:class:`dict`. Create an
     Album object based on a given keyword argument:
 
     :param   album_id: musiXmatch album ID
     :param album_data: an already well-formed :py:class:`dict` of album data.
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword album_id: musiXmatch album ID
     :keyword album_name: album name
