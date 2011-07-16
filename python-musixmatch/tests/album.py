@@ -1,5 +1,4 @@
-from musixmatch import album
-from musixmatch import api
+from musixmatch import *
 from tests import base
 
 class TestAlbum(base.TestItem):
