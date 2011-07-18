@@ -3,9 +3,13 @@ This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing an Artist or an ArtistsCollection.
 
 >>> from musixmatch.artist import Artist, ArtistsCollection
+>>> import musixmatch.api
 >>> 
->>> artist = Artist(artist_id=292)
->>> collection = ArtistsCollection.fromChart(country=it, page=1)
+>>> try:
+...     artist = Artist(artist_id=292)
+...     collection = ArtistsCollection.fromChart(country=it, page=1)
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__

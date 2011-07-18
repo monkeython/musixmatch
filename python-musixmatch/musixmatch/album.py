@@ -3,9 +3,13 @@ This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing an Album or an AlbumsCollection.
 
 >>> from musixmatch.album import Album, AlbumsCollection
+>>> import musixmatch.api
 >>> 
->>> album = Album(album_id=292)
->>> collection = AlbumsCollection.fromArtist(country='it', page=1)
+>>> try:
+...     album = Album(album_id=292)
+...     collection = AlbumsCollection.fromArtist(country='it', page=1)
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__

@@ -3,8 +3,12 @@ This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing a track lyrics.
 
 >>> from musixmatch.lyrics import Lyrics
+>>> import musixmatch.api
 >>> 
->>> lyrics = Lyrics(lyrics_id=292)
+>>> try:
+...     lyrics = Lyrics(lyrics_id=292)
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__
@@ -24,7 +28,7 @@ class Lyrics(Item):
     :param musicbrainz_id: Musicbrainz track ID
     :param track_echonest_id: Echonest track ID
     :param lyrics_data: an already well-formed :py:class:`dict` of track data
-    :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseMessageError` is not 200
+    :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseStatusCode` is not 200
 
     Once information are collected, the following keys are available:
 

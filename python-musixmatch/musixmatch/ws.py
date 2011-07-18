@@ -2,13 +2,22 @@
 This is an utility module that provides a row musiXmatch web API interface.
 Ideally it should be used like this:
 
->>> from musixmatch import ws
->>> it_track_chart = ws.track.chart.get(country='it', page=1, page_size=3, f_has_lyrics=1)
+>>> import musixmatch.ws
+>>> import musixmatch.api
+>>> 
+>>> try:
+...     chart = musixmatch.ws.track.chart.get(country='it', f_has_lyrics=1)
+... except musixmatch.api.Error, e:
+...     pass
 
 or 
 
 >>> from musixmatch.ws import artist
->>> it_artist_chart = artist.chart.get(country='it', page=1, page_size=3)
+>>> import musixmatch.api
+>>> try:
+...     chart = artist.chart.get(country='us')
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__

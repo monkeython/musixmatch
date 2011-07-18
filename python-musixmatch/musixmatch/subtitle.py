@@ -3,8 +3,12 @@ This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing a track subtitle.
 
 >>> from musixmatch.subtitle import Subtitle
+>>> import musixmatch.api
 >>> 
->>> subtitle = Subtitle(subtitle_id=292)
+>>> try:
+...     subtitle = Subtitle(subtitle_id=292)
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__
@@ -24,7 +28,7 @@ class Subtitle(Item):
     :param musicbrainz_id: Musicbrainz track ID
     :param track_echonest_id: Echonest track ID
     :param subtitle_data: an already well-formed :py:class:`dict` of track data
-    :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseMessageError` is not 200
+    :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.StatusCode` is not 200
 
     Once information are collected, the following keys are available:
 

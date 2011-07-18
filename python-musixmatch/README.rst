@@ -13,8 +13,10 @@ Quick start
 
 >>> import musixmatch
 >>> apikey = '<your-apikey>'
->>> chart = musixmatch.ws.track.chart.get(country='it', apikey=apikey)
->>> print chart
+>>> try:
+...     chart = musixmatch.ws.track.chart.get(country='it', apikey=apikey)
+... except musixmatch.api.Error, e:
+...     pass
 
 It's that simple. Last, you can brows this documentation and have fun with the other modules.
 

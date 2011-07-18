@@ -19,14 +19,15 @@ version = os.environ.get('musixmatch_apiversion', '1.1')
 
 class Error(Exception):
     """Base musiXmatch API error.
-    >>> raise Error(1,2,3)
+
+    >>> import musixmatch.api
+    >>> raise musixmatch.api.Error(1,2,3)
     Traceback (most recent call last):
-        ...
-    Error: Error: 1: 2: 3
+    ...
+    Error: 1: 2: 3
     """
     def __str__(self):
-        name = self.__class__.__name__
-        return ': '.join(map(str, (name,) + self.args))
+        return ': '.join(map(str, self.args))
 
     def __repr__(self):
         name = self.__class__.__name__
@@ -41,6 +42,7 @@ class ResponseStatusCode(int):
     :py:class:`ResponseStatusCode` to :py:class:`str` returns the message
     associated with the status code:
 
+    >>> from musixmatch.api import ResponseStatusCode
     >>> str(ResponseStatusCode(200))
     'The request was successful.'
     >>> str(ResponseStatusCode(401))
@@ -71,12 +73,14 @@ class ResponseStatusCode(int):
 
     Any other status code will produce a default message:
 
+    >>> from musixmatch.api import ResponseStatusCode
     >>> str(ResponseStatusCode(666))
     'Unknown status code 666!'
 
     Casting a :py:class:`ResponseStatusCode` to :py:class:`bool` returns True if
     status code is 200, False otherwise:
 
+    >>> from musixmatch.api import ResponseStatusCode
     >>> bool(ResponseStatusCode(200))
     True
     >>> bool(ResponseStatusCode(400))
@@ -180,8 +184,7 @@ class JsonResponseMessage(ResponseMessage, dict):
         try:
             parsed = json.loads(response)
         except Exception, e:
-            raise ResponseMessageError(
-                u'Invalid Json response message', e)
+            raise ResponseMessageError(u'Invalid Json response message', e)
         self.update(parsed['message'])
 
     def __str__(self):
@@ -203,12 +206,14 @@ class QueryString(dict):
     Casting a :py:class:`QueryString` to :py:class:`str` returns the urlencoded
     query string:
 
+    >>> from musixmatch.api import QueryString
     >>> str(QueryString({ 'country': 'it', 'page': 1, 'page_size': 3 }))
     'country=it&page=1&page_size=3'
 
     Using :py:func:`repr` on :py:class:`QueryString` returns an evaluable
     representation of the current instance, excluding apikey value:
 
+    >>> from musixmatch.api import QueryString
     >>> repr(QueryString({ 'country': 'it', 'page': 1, 'apikey': 'whatever'}))
     "QueryString({'country': 'it', 'page': '1'})"
     """
@@ -272,9 +277,13 @@ class Method(str):
     will be used. If **musixmatch_format** is undefined, jason format will
     be used.
 
-    >>> artist = Method('artist')
+    >>> import musixmatch.api
+    >>> artist = musixmatch.api.Method('artist')
     >>> 
-    >>> chart = artist.chart.get(country='it', page=1, page_size=3)
+    >>> try:
+    ...     chart = artist.chart.get(country='it', page=1, page_size=3)
+    ... except musixmatch.api.Error, e:
+    ...     pass
     """
 
     def __getattribute__(self, name):
@@ -303,6 +312,7 @@ class Request(object):
     :py:class:`ResponseMessage` subclass. Assuming the default api version, this
     class try to build a proper request:
 
+    >>> from musixmatch.api import Request, Method, QueryString
     >>> method_name = 'artist.chart.get'
     >>> method = Method(method_name)
     >>> keywords = { 'country': 'it', 'page': 1, 'page_size': 3 }

@@ -2,6 +2,7 @@
 This module contains tha base classes for the Musixmatch API generated content:
 
 * :py:class:`musixmatch.artist.Artist`
+* :py:class:`musixmatch.artist.Album`
 * :py:class:`musixmatch.track.Track`
 * :py:class:`musixmatch.lyrics.Lyrics`
 * :py:class:`musixmatch.subtitle.Subtitle`

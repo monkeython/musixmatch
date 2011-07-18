@@ -3,9 +3,13 @@ This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing a Track or a TracksCollection.
 
 >>> from musixmatch.track import Track, TracksCollection
+>>> import musixmatch.api
 >>> 
->>> track = Track(track_mbid=8976)
->>> collection = TracksCollection.fromChart(country='us', page=1)
+>>> try:
+...     track = Track(track_mbid=8976)
+...     collection = TracksCollection.fromChart(country='us', page=1)
+... except musixmatch.api.Error, e:
+...     pass
 """
 import musixmatch
 __license__ = musixmatch.__license__
