@@ -5,23 +5,26 @@ simple dictionary-like objects representing an Album or an AlbumsCollection.
 >>> from musixmatch.album import Album, AlbumsCollection
 >>> 
 >>> album = Album(album_id=292)
->>> collection = AlbumsCollection.fromArtist(country=it, page=1)
+>>> collection = AlbumsCollection.fromArtist(country='it', page=1)
 """
-from musixmatch import __license__, __author__
-from musixmatch import base
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
+from musixmatch.base import Item, ItemsCollection
 from musixmatch.ws import album, artist
 
-class Album(base.Item):
+class Album(Item):
     """
     This class build a :py:class:`dict` like object representing an album. It
-    can get album informations through the :py:class:`musixmatch.api.Method`
+    can get album information through the :py:class:`musixmatch.api.Method`
     **album.get** or from an already well-formed :py:class:`dict`. Create an
     Album object based on a given keyword argument:
 
     :param   album_id: musiXmatch album ID
     :param album_data: an already well-formed :py:class:`dict` of album data.
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword album_id: musiXmatch album ID
     :keyword album_name: album name
@@ -33,7 +36,7 @@ class Album(base.Item):
     """
     __api_method__ = album.get
 
-class AlbumsCollection(base.ItemsCollection):
+class AlbumsCollection(ItemsCollection):
     """
     This class build a :py:class:`list` like object representing an albums
     collection. It accepts :py:class:`dict` or :py:class:`Album` objects.

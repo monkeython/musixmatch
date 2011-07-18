@@ -6,11 +6,14 @@ simple dictionary-like objects representing a track subtitle.
 >>> 
 >>> subtitle = Subtitle(subtitle_id=292)
 """
-from musixmatch import __license__, __author__
-from musixmatch import base
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+
+from musixmatch.base import Item
 from musixmatch.ws import track
 
-class Subtitle(base.Item):
+class Subtitle(Item):
     """
     This class builds a :py:class:`dict` object representing a subtitle of a
     track. It can get subtitle through the :py:class:`musixmatch.api.Method`
@@ -23,7 +26,7 @@ class Subtitle(base.Item):
     :param subtitle_data: an already well-formed :py:class:`dict` of track data
     :raises: :py:class:`musixmatch.api.Error` if :py:class:`musixmatch.api.ResponseMessageError` is not 200
 
-    Once informations are collected, the following keys are available:
+    Once information are collected, the following keys are available:
 
     :keyword subtitle_body: the subtitle text
     :keyword subtitle_id: the Musixmatch subtitle id

@@ -2,7 +2,11 @@
 This module define the base API classes, and the module variable *version*
 which is used to build the request URL.
 """
-from musixmatch import __author__, __license__, nothing
+import musixmatch
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
+nothing = musixmatch.nothing
+
 from urllib import urlencode, urlopen
 from contextlib import contextmanager
 import os
@@ -14,11 +18,12 @@ except ImportError:
 version = os.environ.get('musixmatch_apiversion', '1.1')
 
 class Error(Exception):
-    """Base musiXmatch API error."""
-
-    def __init__(self, *args):
-        self.args = tuple(args)
-
+    """Base musiXmatch API error.
+    >>> raise Error(1,2,3)
+    Traceback (most recent call last):
+        ...
+    Error: Error: 1: 2: 3
+    """
     def __str__(self):
         name = self.__class__.__name__
         return ': '.join(map(str, (name,) + self.args))
@@ -151,7 +156,7 @@ class ResponseMessage(dict):
 # 
 #     def __getattribute__(self, name):
 #         """
-#         Customize class beviour by passing any attribute access request to
+#         Customize class behaviour by passing any attribute access request to
 #         internal :py:class:`xml.dom.minidom.Document` instance.
 #         """
 #         if name.startswith('_') or name == 'getResponseStatusCode':
@@ -167,7 +172,7 @@ class JsonResponseMessage(ResponseMessage, dict):
     A :py:class:`ResponseMessage` subclass which behaves like a
     :py:class:`dict` to expose the Json structure contained in the response
     message.  Parses the Json response message and build a proper python
-    :py:class:`dict` containing all the informations. Also, setup a
+    :py:class:`dict` containing all the information. Also, setup a
     :py:class:`ResponseStatusCode` by querying the :py:class:`dict` for the
     *['header']['status_code']* item.
     """
@@ -205,7 +210,7 @@ class QueryString(dict):
     representation of the current instance, excluding apikey value:
 
     >>> repr(QueryString({ 'country': 'it', 'page': 1, 'apikey': 'whatever'}))
-    "QueryString({'country': 'it', 'page': 1})"
+    "QueryString({'country': 'it', 'page': '1'})"
     """
     def __init__(self, items=None, **keywords):
         items = items or dict()
@@ -260,7 +265,7 @@ class Method(str):
 
     Calling a :py:class:`Method` as a function with positional
     arguments, builds a :py:class:`Request`, runs it and returns the result.
-    It uses itself to determin the API method name and version, and the
+    It uses itself to determine the API method name and version, and the
     *keywords* arguments for the query string. If **apikey** is
     undefined, environment variable **musixmatch_apikey** will be used. If
     **format** is undefined, environment variable **musixmatch_format**
@@ -306,7 +311,7 @@ class Request(object):
     >>> r1 = Request(method_name, keywords)
     >>> r2 = Request(method_name, **keywords)
     >>> r3 = Request(method_name, query_string)
-    >>> r4 = Request(method, keywords}
+    >>> r4 = Request(method, keywords)
     >>> r5 = Request(method, **keywords)
     >>> r6 = Request(method, query_string)
 
@@ -320,11 +325,11 @@ class Request(object):
     representing the API request:
     
     >>> str(Request('artist.chart.get', { 'country': 'it', 'page': 1 }))
-    'http://api.musixmatch.com/ws/1.1/artist.chart.get?apikey=None&country=it&page=1'
+    'http://api.musixmatch.com/ws/1.1/artist.chart.get?country=it&page=1'
 
     API version is determined as follow:
 
-    1. if environment varaible **musixmatch_apiversion** is defined, it is
+    1. if environment variable **musixmatch_apiversion** is defined, it is
        used.
     2. if no environment variable is defined, module variable **version** is
        used.
