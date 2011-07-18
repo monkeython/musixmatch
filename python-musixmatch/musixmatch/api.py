@@ -18,11 +18,12 @@ except ImportError:
 version = os.environ.get('musixmatch_apiversion', '1.1')
 
 class Error(Exception):
-    """Base musiXmatch API error."""
-
-    def __init__(self, *args):
-        self.args = tuple(args)
-
+    """Base musiXmatch API error.
+    >>> raise Error(1,2,3)
+    Traceback (most recent call last):
+        ...
+    Error: Error: 1: 2: 3
+    """
     def __str__(self):
         name = self.__class__.__name__
         return ': '.join(map(str, (name,) + self.args))
@@ -209,7 +210,7 @@ class QueryString(dict):
     representation of the current instance, excluding apikey value:
 
     >>> repr(QueryString({ 'country': 'it', 'page': 1, 'apikey': 'whatever'}))
-    "QueryString({'country': 'it', 'page': 1})"
+    "QueryString({'country': 'it', 'page': '1'})"
     """
     def __init__(self, items=None, **keywords):
         items = items or dict()
@@ -310,7 +311,7 @@ class Request(object):
     >>> r1 = Request(method_name, keywords)
     >>> r2 = Request(method_name, **keywords)
     >>> r3 = Request(method_name, query_string)
-    >>> r4 = Request(method, keywords}
+    >>> r4 = Request(method, keywords)
     >>> r5 = Request(method, **keywords)
     >>> r6 = Request(method, query_string)
 
@@ -324,7 +325,7 @@ class Request(object):
     representing the API request:
     
     >>> str(Request('artist.chart.get', { 'country': 'it', 'page': 1 }))
-    'http://api.musixmatch.com/ws/1.1/artist.chart.get?apikey=None&country=it&page=1'
+    'http://api.musixmatch.com/ws/1.1/artist.chart.get?country=it&page=1'
 
     API version is determined as follow:
 

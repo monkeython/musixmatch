@@ -5,7 +5,7 @@ simple dictionary-like objects representing a Track or a TracksCollection.
 >>> from musixmatch.track import Track, TracksCollection
 >>> 
 >>> track = Track(track_mbid=8976)
->>> collection = TracksCollection.fromChart(country=us, page=1)
+>>> collection = TracksCollection.fromChart(country='us', page=1)
 """
 import musixmatch
 __license__ = musixmatch.__license__

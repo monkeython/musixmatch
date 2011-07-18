@@ -5,7 +5,7 @@ simple dictionary-like objects representing an Album or an AlbumsCollection.
 >>> from musixmatch.album import Album, AlbumsCollection
 >>> 
 >>> album = Album(album_id=292)
->>> collection = AlbumsCollection.fromArtist(country=it, page=1)
+>>> collection = AlbumsCollection.fromArtist(country='it', page=1)
 """
 import musixmatch
 __license__ = musixmatch.__license__
