@@ -42,18 +42,5 @@ __doc__ = """
 :copyright: %s
 """ % (__version__, __author__, __license__)
 
-class Nothing(object):
-    """Convenience class, which is an alternative to :py:class:`NoneType`. """
-    def __nonzero__(self):
-        return False
-
-    def __str__(self):
-        return type(self).__name__
-
-    def __repr__(self):
-        return '%s()' % type(self).__name__
-
-nothing = Nothing()
-
 import api
 import ws
