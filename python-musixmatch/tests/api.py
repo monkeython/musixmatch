@@ -5,7 +5,7 @@ class TestError(unittest.TestCase):
 
     def test__str__(self):
         error = api.Error('test error', Exception('test exception'))
-        self.assertEqual(str(error), 'Error: test error: test exception')
+        self.assertEqual(str(error), 'test error: test exception')
 
 class TestResponseStatusCode(unittest.TestCase):
 

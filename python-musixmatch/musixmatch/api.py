@@ -1,11 +1,9 @@
 """
-This module define the base API classes, and the module variable *version*
-which is used to build the request URL.
+This module define the base API classes.
 """
 import musixmatch
 __license__ = musixmatch.__license__
 __author__ = musixmatch.__author__
-nothing = musixmatch.nothing
 
 from urllib import urlencode, urlopen
 from contextlib import contextmanager
@@ -15,12 +13,10 @@ try:
 except ImportError:
     import simplejson as json
 
-version = os.environ.get('musixmatch_apiversion', '1.1')
-
 class Error(Exception):
     """Base musiXmatch API error.
 
-    >>> import musixmatch.api
+    >>> import musixmatch
     >>> raise musixmatch.api.Error(1,2,3)
     Traceback (most recent call last):
     ...
@@ -268,16 +264,13 @@ class Method(str):
     those specified in the API. Each attribute access builds a new Method with
     a new name.
 
-    Calling a :py:class:`Method` as a function with positional
-    arguments, builds a :py:class:`Request`, runs it and returns the result.
-    It uses itself to determine the API method name and version, and the
-    *keywords* arguments for the query string. If **apikey** is
-    undefined, environment variable **musixmatch_apikey** will be used. If
-    **format** is undefined, environment variable **musixmatch_format**
-    will be used. If **musixmatch_format** is undefined, jason format will
-    be used.
+    Calling a :py:class:`Method` as a function with positional arguments,
+    builds a :py:class:`Request`, runs it and returns the result. If **apikey**
+    is undefined, environment variable **musixmatch_apikey** will be used. If
+    **format** is undefined, environment variable **musixmatch_format** will be
+    used. If **musixmatch_format** is undefined, jason format will be used.
 
-    >>> import musixmatch.api
+    >>> import musixmatch
     >>> artist = musixmatch.api.Method('artist')
     >>> 
     >>> try:
@@ -309,8 +302,8 @@ class Request(object):
     This is the main API class. Given a :py:class:`Method` or a method name, a
     :py:class:`QueryString` or a :py:class:`dict`, it can build the API query
     URL, run the request and return the response either as a string or as a
-    :py:class:`ResponseMessage` subclass. Assuming the default api version, this
-    class try to build a proper request:
+    :py:class:`ResponseMessage` subclass. Assuming the default web services
+    location, this class try to build a proper request:
 
     >>> from musixmatch.api import Request, Method, QueryString
     >>> method_name = 'artist.chart.get'
@@ -336,13 +329,6 @@ class Request(object):
     
     >>> str(Request('artist.chart.get', { 'country': 'it', 'page': 1 }))
     'http://api.musixmatch.com/ws/1.1/artist.chart.get?country=it&page=1'
-
-    API version is determined as follow:
-
-    1. if environment variable **musixmatch_apiversion** is defined, it is
-       used.
-    2. if no environment variable is defined, module variable **version** is
-       used.
     """
     def __init__ (self, api_method, query_string=None, **keywords):
         query_string = query_string or dict()
@@ -400,8 +386,11 @@ class Request(object):
         return 'Request(%r, %r)' % (self.api_method, self.query_string)
 
     def __str__(self):
-        return 'http://api.musixmatch.com/ws/%s/%s?%s' % (
-            version, self.api_method, self.query_string )
+        return '%(ws_location)s/%(api_method)s?%(query_string)s' % {
+            'ws_location': musixmatch.ws.location,
+            'api_method': self.api_method,
+            'query_string': self.query_string
+        }
 
     def __hash__(self):
         return hash(str(self))

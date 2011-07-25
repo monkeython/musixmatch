@@ -2,31 +2,29 @@
 This is an utility module that provides a row musiXmatch web API interface.
 Ideally it should be used like this:
 
->>> import musixmatch.ws
->>> import musixmatch.api
+>>> import musixmatch
 >>> 
 >>> try:
 ...     chart = musixmatch.ws.track.chart.get(country='it', f_has_lyrics=1)
 ... except musixmatch.api.Error, e:
 ...     pass
-
-or 
-
->>> from musixmatch.ws import artist
->>> import musixmatch.api
->>> try:
-...     chart = artist.chart.get(country='us')
-... except musixmatch.api.Error, e:
-...     pass
 """
+from warnings import warn
+import os
 import musixmatch
 __license__ = musixmatch.__license__
 __author__ = musixmatch.__author__
 
-from musixmatch import api
+_version = os.environ.get('musixmatch_apiversion', None)
+if not _version:
+    _version = '1.1'
+else:
+    warn("`musixmatch_apiversion' was deprecated in favour of `musixmatch_wslocation'", DeprecationWarning)
 
-artist = api.Method('artist')
-album = api.Method('album')
-track = api.Method('track')
-tracking = api.Method('tracking')
-matcher = api.Method('matcher')
+location = os.environ.get('musixmatch_wslocation', 'http://api.musixmatch.com/ws/%s' % _version)
+
+artist = musixmatch.api.Method('artist')
+album = musixmatch.api.Method('album')
+track = musixmatch.api.Method('track')
+tracking = musixmatch.api.Method('tracking')
+matcher = musixmatch.api.Method('matcher')
