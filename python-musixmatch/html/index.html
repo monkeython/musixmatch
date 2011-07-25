@@ -103,8 +103,10 @@ along with this program.  If not, see &lt;<a class="reference external" href="ht
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">musixmatch</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">apikey</span> <span class="o">=</span> <span class="s">&#39;&lt;your-apikey&gt;&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">chart</span> <span class="o">=</span> <span class="n">musixmatch</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">track</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="s">&#39;it&#39;</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">chart</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">chart</span> <span class="o">=</span> <span class="n">musixmatch</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">track</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="s">&#39;it&#39;</span><span class="p">,</span> <span class="n">apikey</span><span class="o">=</span><span class="n">apikey</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">musixmatch</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
 </pre></div>
 </div>
 <p>It&#8217;s that simple. Last, you can brows this documentation and have fun with the other modules.</p>
@@ -244,7 +246,7 @@ a further caching support. Though i can consider serialization support.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Luca De Vitis.
-      Last updated on Jul 15, 2011.
+      Last updated on Jul 25, 2011.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>

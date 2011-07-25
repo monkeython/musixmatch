@@ -56,9 +56,13 @@
 <p>This module contains higher level classes to query Musixmatch API and build
 simple dictionary-like objects representing an Artist or an ArtistsCollection.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">musixmatch.artist</span> <span class="kn">import</span> <span class="n">Artist</span><span class="p">,</span> <span class="n">ArtistsCollection</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">musixmatch.api</span>
 <span class="gp">&gt;&gt;&gt; </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">artist</span> <span class="o">=</span> <span class="n">Artist</span><span class="p">(</span><span class="n">artist_id</span><span class="o">=</span><span class="mi">292</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">collection</span> <span class="o">=</span> <span class="n">ArtistsCollection</span><span class="o">.</span><span class="n">fromChart</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="n">it</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">artist</span> <span class="o">=</span> <span class="n">Artist</span><span class="p">(</span><span class="n">artist_id</span><span class="o">=</span><span class="mi">292</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">collection</span> <span class="o">=</span> <span class="n">ArtistsCollection</span><span class="o">.</span><span class="n">fromChart</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="n">it</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">musixmatch</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">Error</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
 </pre></div>
 </div>
 <dl class="class">
@@ -66,7 +70,7 @@ simple dictionary-like objects representing an Artist or an ArtistsCollection.</
 <em class="property">class </em><tt class="descname">Artist</tt><big>(</big><em>dictionary=None</em>, <em>**keywords</em><big>)</big><a class="headerlink" href="#musixmatch.artist.Artist" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#musixmatch.base.Item" title="musixmatch.base.Item"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.base.Item</span></tt></a></p>
 <p>This class build a <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt> like object representing an artist. It
-can get artist informations through the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
+can get artist information through the <a class="reference internal" href="api.html#musixmatch.api.Method" title="musixmatch.api.Method"><tt class="xref py py-class docutils literal"><span class="pre">musixmatch.api.Method</span></tt></a>
 <strong>artist.get</strong> or from an already well-formed <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt>. Create an
 Artist object based on a given keyword argument:</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -82,7 +86,7 @@ Artist object based on a given keyword argument:</p>
 </tr>
 </tbody>
 </table>
-<p>Once informations are collected, the following keys are available:</p>
+<p>Once information are collected, the following keys are available:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -216,7 +220,7 @@ collection. It accepts <tt class="xref py py-class docutils literal"><span class
     </div>
     <div class="footer">
         &copy; Copyright 2011, Luca De Vitis.
-      Last updated on Jul 15, 2011.
+      Last updated on Jul 25, 2011.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
