@@ -4,7 +4,6 @@ api module
 
 .. automodule:: musixmatch.api
    :undoc-members:
-   :members: version
 
    .. autoexception:: Error
       :show-inheritance:
