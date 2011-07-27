@@ -1,5 +1,5 @@
 __author__ = "Luca De Vitis <luca@monkeython.com>"
-__version__ = '0.8'
+__version__ = '0.9'
 __classifiers__ = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
@@ -41,6 +41,11 @@ __doc__ = """
 :contact: http://www.monkeython.com
 :copyright: %s
 """ % (__version__, __author__, __license__)
+
+import os
+
+apikey = os.environ.get('musixmatch_apikey', None)
+format = os.environ.get('musixmatch_format', 'json')
 
 import api
 import ws
