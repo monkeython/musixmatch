@@ -65,7 +65,12 @@ musixmatch_apikey
    the apikey value to use in query strings
 musixmatch_format
    the response message format. For example: json
-musixmatch_apiversion (deprecated)
-   the api version to use in queryes. For example: 1.1
 musixmatch_wslocation
    the webservice base url. For example: http://api.musixmatch.com/ws/1.1
+musixmatch_apiversion
+   the api version to use in queryes. For example: 1.1
+
+.. deprecated:: 0.9
+   Use of **musixmatch_apiversion** was deprecated in favour of
+   **musixmatch_wslocation**.
+
