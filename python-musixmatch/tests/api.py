@@ -1,5 +1,9 @@
 import unittest
 from musixmatch import *
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 class TestError(unittest.TestCase):
 
@@ -33,76 +37,30 @@ class TestResponseMessage(unittest.TestCase):
     def test__init__(self):
         self.assertRaises(NotImplementedError, api.ResponseMessage, '')
 
-# class TestXMLResponseMessage(unittest.TestCase):
-# 
-#     __successful = """<message>
-#     <header>
-#         <status_code>200</status_code>
-#     </header>
-#     <body>
-#     </body>
-# </message>"""
-#     __not_found = """<message>
-#     <header>
-#         <status_code>404</status_code>
-#     </header>
-#     <body>
-#     </body>
-# </message>"""
-#     def test__init__(self):
-#         self.assertRaises(api.ResponseMessageError,
-#             api.XMLResponseMessage, '')
-#         self.assertRaises(api.ResponseMessageError,
-#             api.XMLResponseMessage, None)
-#         self.assertRaises(api.ResponseMessageError,
-#             api.XMLResponseMessage, 'fail')
-# 
-#     def test__str__(self):
-#         message = str(api.XMLResponseMessage(self.__successful))
-#         self.assertEqual(message, str(api.XMLResponseMessage(message)))
-# 
-#     def test__getattribute__(self):
-#         message = api.XMLResponseMessage(self.__successful)
-#         self.assertEqual(hasattr(message, 'getElementsByTagName'), True)
-# 
-#     def test_getResponseStatusCode(self):
-#         message = api.XMLResponseMessage(self.__successful)
-#         code = message.getResponseStatusCode()
-#         self.assertEqual(isinstance(code, api.ResponseStatusCode), True)
-#         self.assertEqual(int(code), 200)
+class TestXMLResponseMessage(unittest.TestCase):
+
+    message = """<message>
+    <header>
+        <status_code>200</status_code>
+    </header>
+    <body>
+    </body>
+</message>"""
+
+    def test_status_code(self):
+        message = api.XMLResponseMessage(StringIO(self.message))
+        self.assertEqual(isinstance(message.status_code, api.ResponseStatusCode), True)
 
 class TestJsonResponseMessage(unittest.TestCase):
-    __successful = """{"message":{
+    message = """{"message":{
     "header":{
         "status_code":200},
     "body":{
 }}}"""
-    __not_found = """{"message":{
-    "header":{
-        "status_code":404},
-    "body":{
-}}}"""
-    def test__init__(self):
-        self.assertRaises(api.ResponseMessageError,
-            api.JsonResponseMessage, '')
-        self.assertRaises(api.ResponseMessageError,
-            api.JsonResponseMessage, None)
-        self.assertRaises(api.ResponseMessageError,
-            api.JsonResponseMessage, 'fail')
-
-    def test__str__(self):
-        message = str(api.JsonResponseMessage(self.__successful))
-        self.assertEqual(message, str(api.JsonResponseMessage(message)))
-
-    def test__getitem__(self):
-        message = api.JsonResponseMessage(self.__successful)
-        self.assertEqual(bool(message.get('header')), True)
 
     def test_status_code(self):
-        message = api.JsonResponseMessage(self.__successful)
-        code = message.status_code
-        self.assertEqual(isinstance(code, api.ResponseStatusCode), True)
-        self.assertEqual(int(code), 200)
+        message = api.JsonResponseMessage(StringIO(self.message))
+        self.assertEqual(isinstance(message.status_code, api.ResponseStatusCode), True)
 
 class TestQueryString(unittest.TestCase):
     def test__str__(self):
