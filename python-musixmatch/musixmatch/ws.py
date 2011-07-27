@@ -19,7 +19,7 @@ _version = os.environ.get('musixmatch_apiversion', None)
 if not _version:
     _version = '1.1'
 else:
-    warn("`musixmatch_apiversion' was deprecated in favour of `musixmatch_wslocation'", DeprecationWarning)
+    warn("Use of `musixmatch_apiversion' was deprecated in favour of `musixmatch_wslocation'", DeprecationWarning)
 
 location = os.environ.get('musixmatch_wslocation', 'http://api.musixmatch.com/ws/%s' % _version)
 
