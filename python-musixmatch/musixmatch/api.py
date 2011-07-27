@@ -1,5 +1,4 @@
-"""
-This module define the base API classes.
+""" This module define the base API classes.
 """
 import musixmatch
 __license__ = musixmatch.__license__
@@ -13,14 +12,29 @@ try:
 except ImportError:
     import simplejson as json
 
+try:
+    from lxml import etree
+except ImportError:
+    try:
+        import xml.etree.cElementTree as etree
+    except ImportError:
+        try:
+            import xml.etree.ElementTree as etree
+        except ImportError:
+            try:
+                import cElementTree as etree
+            except ImportError:
+                import elementtree.ElementTree as etree
+
+
 class Error(Exception):
     """Base musiXmatch API error.
 
     >>> import musixmatch
-    >>> raise musixmatch.api.Error(1,2,3)
+    >>> raise musixmatch.api.Error('Error message')
     Traceback (most recent call last):
     ...
-    Error: 1: 2: 3
+    Error: Error message
     """
     def __str__(self):
         return ': '.join(map(str, self.args))
@@ -111,7 +125,7 @@ class ResponseMessage(dict):
     """
     Abstract class which provides a base class for formatted response.
     """
-    def __init__(self, dictionary, **keywords):
+    def __init__(self, response):
         raise NotImplementedError
 
     @property
@@ -127,46 +141,6 @@ class ResponseMessage(dict):
     def __repr__(self):
         return "%s('...')" % type(self).__name__
 
-# class XMLResponseMessage(ResponseMessage):
-#     """
-#     A :py:class:`ResponseMessage` subclass which exposes
-#     :py:mod:`xml.dom.minidom.Document` methods to handle XML response
-#     messages.  Parses the XML response message and build a
-#     :py:class:`xml.dom.minidom.Document` instance. Also setup the a
-#     :py:class:`ResponseStatusCode` by querying the *status_code* tag content
-#     from the :py:class:`xml.dom.minidom.Document`.
-# 
-#     Casting a :py:class:`XMLResponseMessage` returns (actually re-builds) a
-#     pretty printed string representing the XML API response message.
-#     """
-#     def __init__(self, response):
-#         try:
-#             self.__document = parseString(response)
-#             status = self.__document.getElementsByTagName('status_code')[0]
-#             code = status.childNodes[0].data
-#         except Exception, e:
-#             raise ResponseMessageError(
-#                 u'Invalid XML response message', e)
-#         self._status_code = ResponseStatusCode(code)
-# 
-#     def __str__(self):
-#         message = self.__document.getElementsByTagName('message')[0]
-#         s = message.toprettyxml(4 * ' ')
-#         return '\n'.join([ l for l in s.splitlines() if l.strip() ])
-# 
-#     def __getattribute__(self, name):
-#         """
-#         Customize class behaviour by passing any attribute access request to
-#         internal :py:class:`xml.dom.minidom.Document` instance.
-#         """
-#         if name.startswith('_') or name == 'getResponseStatusCode':
-#             return super(XMLResponseMessage, self).__getattribute__(name)
-#         else:
-#             return getattr(self.__document, name)
-# 
-# class JsonpResponseMessage(ResponseMessage):
-#     pass
-
 class JsonResponseMessage(ResponseMessage, dict):
     """
     A :py:class:`ResponseMessage` subclass which behaves like a
@@ -178,7 +152,7 @@ class JsonResponseMessage(ResponseMessage, dict):
     """
     def __init__(self, response):
         try:
-            parsed = json.loads(response)
+            parsed = json.load(response)
         except Exception, e:
             raise ResponseMessageError(u'Invalid Json response message', e)
         self.update(parsed['message'])
@@ -191,6 +165,31 @@ class JsonResponseMessage(ResponseMessage, dict):
     def status_code(self):
         """Overload :py:meth:`ResponseMessage.status_code`"""
         return ResponseStatusCode(self['header']['status_code'])
+
+class XMLResponseMessage(ResponseMessage, etree.ElementTree):
+    """
+    A :py:class:`ResponseMessage` subclass which exposes
+    :py:class:`ElementTree` methods to handle XML response
+    messages. Parses the XML response message and build a
+    :py:class:`ElementTree` instance. Also setup the a
+    :py:class:`ResponseStatusCode` by querying the *status_code* tag content.
+
+    Casting a :py:class:`XMLResponseMessage` returns (actually re-builds) a
+    pretty printed string representing the XML API response message.
+    """
+
+    def __init__(self, response):
+        etree.ElementTree.__init__(self, None, response)
+
+    def __str__(self):
+        s = StringIO()
+        self.wite(s)
+        return s.getvalue()
+
+    @property
+    def status_code(self):
+        """Overload :py:meth:`ResponseMessage.status_code`"""
+        return ResponseStatusCode(self.findtext('header/status_code'))
 
 class QueryString(dict):
     """
@@ -213,8 +212,7 @@ class QueryString(dict):
     >>> repr(QueryString({ 'country': 'it', 'page': 1, 'apikey': 'whatever'}))
     "QueryString({'country': 'it', 'page': '1'})"
     """
-    def __init__(self, items=None, **keywords):
-        items = items or dict()
+    def __init__(self, items=(), **keywords):
         dict.__init__(self, items, **keywords)
         for k in self:
             self[k] = str(self[k]).encode('utf-8')
@@ -264,7 +262,7 @@ class Method(str):
     those specified in the API. Each attribute access builds a new Method with
     a new name.
 
-    Calling a :py:class:`Method` as a function with positional arguments,
+    Calling a :py:class:`Method` as a function with keyword arguments,
     builds a :py:class:`Request`, runs it and returns the result. If **apikey**
     is undefined, environment variable **musixmatch_apikey** will be used. If
     **format** is undefined, environment variable **musixmatch_format** will be
@@ -278,20 +276,17 @@ class Method(str):
     ... except musixmatch.api.Error, e:
     ...     pass
     """
+    __separator__ = '.'
 
     def __getattribute__(self, name):
         if name.startswith('_'):
             return super(Method, self).__getattribute__(name)
         else:
-            return Method('.'.join([self, name]))
+            return Method(self.__separator__.join([self, name]))
 
     def __call__ (self, apikey=None, format=None, **query):
-        if apikey is None:
-            apikey = os.environ.get('musixmatch_apikey')
-        query.setdefault('apikey', apikey)
-        if format is None:
-            format = os.environ.get('musixmatch_format', 'json')
-        query.setdefault('format', format)
+        query['apikey'] = apikey or musixmatch.apikey
+        query['format'] = format or musixmatch.format
         return Request(self, query).response
 
     def __repr__(self):
@@ -330,15 +325,12 @@ class Request(object):
     >>> str(Request('artist.chart.get', { 'country': 'it', 'page': 1 }))
     'http://api.musixmatch.com/ws/1.1/artist.chart.get?country=it&page=1'
     """
-    def __init__ (self, api_method, query_string=None, **keywords):
-        query_string = query_string or dict()
-        if not isinstance(query_string, QueryString):
-            query_string = QueryString(query_string)
-        if not isinstance(api_method, Method):
-            api_method = Method(api_method)
-        query_string.update(keywords)
-        self.__api_method = api_method
-        self.__query_string = query_string
+    def __init__ (self, api_method, query=(), **keywords):
+        self.__api_method = isinstance(api_method, Method) and \
+            api_method or Method(api_method)
+        self.__query_string = isinstance(query, QueryString) and \
+            query or QueryString(query)
+        self.__query_string.update(keywords)
         self.__response = None
 
     @property
@@ -371,14 +363,14 @@ class Request(object):
             format = self.query_string.get('format')
             ResponseMessageClass = {
                 'json': JsonResponseMessage,
-            #    'xml': XMLResponseMessage,
+                'xml': XMLResponseMessage,
             }.get(format, None)
 
             if not ResponseMessageClass:
                 raise ResponseMessageError("Unsupported format `%s'" % format)
 
-            with self._received() as message:
-                self.__response = ResponseMessageClass(message.read())
+            with self._received() as response:
+                self.__response = ResponseMessageClass(response)
 
         return self.__response
 
