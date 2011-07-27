@@ -10,6 +10,8 @@ Package overview
 
 .. include:: ../README.rst
 
+.. include:: ../CHANGES.rst
+
 Package API
 ===========
 

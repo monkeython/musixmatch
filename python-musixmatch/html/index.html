@@ -56,7 +56,7 @@
 <tr class="field"><th class="field-name">abstract:</th><td class="field-body"><p class="first">Python interface to Musixmatch API</p>
 </td>
 </tr>
-<tr class="field"><th class="field-name">version:</th><td class="field-body"><p class="first">0.8</p>
+<tr class="field"><th class="field-name">version:</th><td class="field-body"><p class="first">0.9</p>
 </td>
 </tr>
 <tr class="field"><th class="field-name">author:</th><td class="field-body"><p class="first">Luca De Vitis &lt;<a class="reference external" href="mailto:luca&#37;&#52;&#48;monkeython&#46;com">luca<span>&#64;</span>monkeython<span>&#46;</span>com</a>&gt;</p>
@@ -88,10 +88,6 @@ along with this program.  If not, see &lt;<a class="reference external" href="ht
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="python-interface-to-musixmatch-api">
-<h1>Python interface to Musixmatch API<a class="headerlink" href="#python-interface-to-musixmatch-api" title="Permalink to this headline">¶</a></h1>
-<p>This package provides a module to interface with the Musixmatch API, and some utility modules to play with.</p>
 </div>
 <div class="section" id="quick-start">
 <h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
@@ -153,9 +149,43 @@ a further caching support. Though i can consider serialization support.</p>
 <dt>musixmatch_apikey</dt>
 <dd>the apikey value to use in query strings</dd>
 <dt>musixmatch_format</dt>
-<dd>the response message format to query for</dd>
+<dd>the response message format. For example: json</dd>
+<dt>musixmatch_wslocation</dt>
+<dd>the webservice base url. For example: <a class="reference external" href="http://api.musixmatch.com/ws/1.1">http://api.musixmatch.com/ws/1.1</a></dd>
 <dt>musixmatch_apiversion</dt>
-<dd>the api version to use in queryes</dd>
+<dd>the api version to use in queryes. For example: 1.1</dd>
+</dl>
+<p class="deprecated">
+<span class="versionmodified">Deprecated since version 0.9: </span>Use of <strong>musixmatch_apiversion</strong> was deprecated in favour of
+<strong>musixmatch_wslocation</strong>.</p>
+</div>
+<div class="section" id="changes">
+<h1>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>0.9</dt>
+<dd><ul class="first last">
+<li><p class="first">Added support for XML response messages.</p>
+</li>
+<li><p class="first">Deprecated <strong>musixmatch_apiversion</strong> environment variable in favour of
+<strong>musixmatch_wslocation</strong>. This will let developers to set up different api
+location and setup a testing environment.</p>
+</li>
+<li><p class="first"><strong>apikey</strong> and <strong>format</strong> in api.Method are now lookedup as follow:</p>
+<ol class="arabic simple">
+<li>Positional arguments.</li>
+<li>Package wide variables.</li>
+<li>Operating system environment.</li>
+</ol>
+<p>Keyword arguments are not considered any more.</p>
+</li>
+</ul>
+</dd>
+<dt>0.8</dt>
+<dd><ul class="first last simple">
+<li>API interface with JSON response support.</li>
+<li>Low level objects library built around JSON response messages.</li>
+</ul>
+</dd>
 </dl>
 </div>
 <div class="section" id="package-api">
@@ -191,13 +221,13 @@ a further caching support. Though i can consider serialization support.</p>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Package overview</a></li>
-<li><a class="reference internal" href="#python-interface-to-musixmatch-api">Python interface to Musixmatch API</a></li>
 <li><a class="reference internal" href="#quick-start">Quick start</a></li>
 <li><a class="reference internal" href="#building-installing">Building / Installing</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#unit-testing">Unit testing</a></li>
 <li><a class="reference internal" href="#caching-support">Caching support</a></li>
 <li><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li><a class="reference internal" href="#changes">Changes</a></li>
 <li><a class="reference internal" href="#package-api">Package API</a><ul>
 </ul>
 </li>
@@ -246,7 +276,7 @@ a further caching support. Though i can consider serialization support.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Luca De Vitis.
-      Last updated on Jul 25, 2011.
+      Last updated on Jul 28, 2011.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
