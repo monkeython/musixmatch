@@ -70,7 +70,7 @@ musixmatch_wslocation
 musixmatch_apiversion
    the api version to use in queryes. For example: 1.1
 
-.. deprecated:: 0.9
-   Use of **musixmatch_apiversion** was deprecated in favour of
-   **musixmatch_wslocation**.
+   .. deprecated:: 0.9
+      Use of **musixmatch_apiversion** was deprecated in favour of
+      **musixmatch_wslocation**.
 

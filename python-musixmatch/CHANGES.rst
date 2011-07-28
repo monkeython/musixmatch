@@ -4,8 +4,8 @@ Changes
 0.9
    * Added support for XML response messages.
    * Deprecated **musixmatch_apiversion** environment variable in favour of
-     **musixmatch_wslocation**. This will let developers to set up different api
-     location and setup a testing environment.
+     **musixmatch_wslocation**. This will let developers to setup different api
+     location and a testing environment. (musicae-ipsum under construction)
    * **apikey** and **format** in api.Method are now lookedup as follow:
 
      1. Positional arguments.
