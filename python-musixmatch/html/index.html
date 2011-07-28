@@ -153,11 +153,12 @@ a further caching support. Though i can consider serialization support.</p>
 <dt>musixmatch_wslocation</dt>
 <dd>the webservice base url. For example: <a class="reference external" href="http://api.musixmatch.com/ws/1.1">http://api.musixmatch.com/ws/1.1</a></dd>
 <dt>musixmatch_apiversion</dt>
-<dd>the api version to use in queryes. For example: 1.1</dd>
-</dl>
-<p class="deprecated">
+<dd><p class="first">the api version to use in queryes. For example: 1.1</p>
+<p class="last deprecated">
 <span class="versionmodified">Deprecated since version 0.9: </span>Use of <strong>musixmatch_apiversion</strong> was deprecated in favour of
 <strong>musixmatch_wslocation</strong>.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="changes">
 <h1>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h1>
@@ -167,8 +168,8 @@ a further caching support. Though i can consider serialization support.</p>
 <li><p class="first">Added support for XML response messages.</p>
 </li>
 <li><p class="first">Deprecated <strong>musixmatch_apiversion</strong> environment variable in favour of
-<strong>musixmatch_wslocation</strong>. This will let developers to set up different api
-location and setup a testing environment.</p>
+<strong>musixmatch_wslocation</strong>. This will let developers to setup different api
+location and a testing environment. (musicae-ipsum under construction)</p>
 </li>
 <li><p class="first"><strong>apikey</strong> and <strong>format</strong> in api.Method are now lookedup as follow:</p>
 <ol class="arabic simple">
