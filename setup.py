@@ -24,5 +24,7 @@ setup(
 #    download_url = '%s/eggs/%s' % (url, name),
     classifiers = pkg.__classifiers__,
     packages = [name],
+    include_package_data = True,
+    exclude_package_data = {name: ["*.rst", "docs", "tests"]},
     test_suite = 'tests.suite')
 

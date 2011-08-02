@@ -11,7 +11,7 @@ Ideally it should be used like this:
 """
 from warnings import warn
 import os
-import musixmatch
+import musixmatch.api
 __license__ = musixmatch.__license__
 __author__ = musixmatch.__author__
 

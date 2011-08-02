@@ -1,29 +1,76 @@
-Why Musixmatch API interface
-============================
+Quick start
+===========
 
-It all started because I've known many `people at Musixmatch`_ for a long time,
-but still didn't understand what they were starting up. So I gived a look at
-their `API`_ and soon loved the design.  Writing the first library sketch was
-so fun that i decided to keep going and i wrote the python-musixmatch.  On top
-of the package I'm going to build a `Plone`_ product as sample application,
-then I'll take the chance to start developing with some frameworks I'm not
-familiar with, like `Pylons/Pyramid`_, `Turbogears`_, `Grok`_ and last, but not
-least, `Django`_
+1. First thing first, read the documentation at http://developers.musixmatch.com/documentation .
+2. Get an api key by signing up at http://developers.musixmatch.com/mmplans .
+3. Install the musixmatch package
+4. Run the python prompt
 
-What's inside this project
-==========================
+>>> import musixmatch
+>>> apikey = '<your-apikey>'
+>>> try:
+...     chart = musixmatch.ws.track.chart.get(country='it', apikey=apikey)
+... except musixmatch.api.Error, e:
+...     pass
 
-python-musixmatch: `Python`_ (2.6, 2.7) package
+It's that simple. Last, you can brows this documentation and have fun with the other modules.
 
-Product.Musixmatch: `Plone`_ Product
+Building / Installing
+=====================
 
-Work in progress for: `Turbogears`_, `Pylons/Pyramid`_, `Django`_, `Grok`_
+You can just use setup.py to build and install python-musixmatch::
 
-.. _Python: http://www.python.org/download/releases/
-.. _Plone: http://plone.org
-.. _Pylons/Pyramid: http://pylonsproject.org
-.. _Turbogears: http://turbogears.org
-.. _Grok: http://grok.zope.org
-.. _Django: https://www.djangoproject.com
-.. _API: https://developer.musixmatch.com/documentation
-.. _people at Musixmatch: http://musixmatch.com/about_us
+   prompt $ python setup.py bdist_egg
+
+Once built, you can use easy_install on the python egg.
+
+Documentation
+=============
+You can read documentation online_, or generate your own local copy using
+`Sphinx`_ trough the setup.py::
+
+   prompt $ python setup.py build_sphinx
+
+.. _Sphinx: http://sphinx.pocoo.org
+.. _online: http://projects.monkeython.com/musixmatch/python-musixmatch/html/index.html
+
+Unit testing
+============
+python-musixmatch comes with some essential unit testing. If you set up
+**musixmatch_apikey** environment variable, and have internet connection, you
+can also run some tests on API calls::
+
+   prompt $ python setup.py test
+
+Caching support
+===============
+
+Applications using python-musixmatch may take advantage of standard
+urllib support for **http_proxy**, so they can just set up the proper
+environment variable:
+
+http_proxy
+   the complete HTTP proxy URL to use in queries.
+
+Considering all the available HTTP proxy solutions, I'm reluctant to implement
+a further caching support. Though i can consider serialization support.
+
+Environment variables
+=====================
+
+python-musixmatch takes advantage of operating system environment to get
+**apikey**, **format** and api **version** values to use in API calls:
+
+musixmatch_apikey
+   the apikey value to use in query strings
+musixmatch_format
+   the response message format. For example: json
+musixmatch_wslocation
+   the webservice base url. For example: http://api.musixmatch.com/ws/1.1
+musixmatch_apiversion
+   the api version to use in queryes. For example: 1.1
+
+   .. deprecated:: 0.9
+      Use of **musixmatch_apiversion** was deprecated in favour of
+      **musixmatch_wslocation**.
+
