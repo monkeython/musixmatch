@@ -7,7 +7,7 @@ simple dictionary-like objects representing an Artist or an ArtistsCollection.
 >>> 
 >>> try:
 ...     artist = Artist(artist_id=292)
-...     collection = ArtistsCollection.fromChart(country=it, page=1)
+...     collection = ArtistsCollection.fromChart(country='it', page=1)
 ... except musixmatch.api.Error, e:
 ...     pass
 """
