@@ -17,8 +17,8 @@ suite.addTest(defaultTestLoader.loadTestsFromModule(lyrics))
 suite.addTest(defaultTestLoader.loadTestsFromModule(subtitle))
 suite.addTest(defaultTestLoader.loadTestsFromModule(track))
 suite.addTest(defaultTestLoader.loadTestsFromModule(album))
-if os.environ.get('musixmatch_apikey', None):
-    suite.addTest(defaultTestLoader.loadTestsFromModule(apikey))
+# if os.environ.get('musixmatch_apikey', None):
+#     suite.addTest(defaultTestLoader.loadTestsFromModule(apikey))
 
 # suite.addTest(api.TestError())
 # suite.addTest(api.TestResponseStatusCode())
