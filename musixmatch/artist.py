@@ -25,7 +25,7 @@ class Artist(Item):
     **artist.get** or from an already well-formed :py:class:`dict`. Create an
     Artist object based on a given keyword argument:
 
-    :param   artist_id: musiXmatch artist ID
+    :param artist_id: musiXmatch artist ID
     :param artist_mbid: Musicbrainz artist ID
     :param artist_data: an already well-formed :py:class:`dict` of artist data.
 

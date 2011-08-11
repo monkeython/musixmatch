@@ -1,9 +1,6 @@
 """ This module define the base API classes.
 """
 import musixmatch
-__license__ = musixmatch.__license__
-__author__ = musixmatch.__author__
-
 from urllib import urlencode, urlopen
 from contextlib import contextmanager
 import os
@@ -11,7 +8,6 @@ try:
     import json
 except ImportError:
     import simplejson as json
-
 try:
     from lxml import etree
 except ImportError:
@@ -26,6 +22,8 @@ except ImportError:
             except ImportError:
                 import elementtree.ElementTree as etree
 
+__license__ = musixmatch.__license__
+__author__ = musixmatch.__author__
 
 class Error(Exception):
     """Base musiXmatch API error.
