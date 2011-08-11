@@ -1,7 +1,7 @@
 Quick start
 ===========
 
-1. First thing first, read the documentation at http://developers.musixmatch.com/documentation .
+1. First thing first, read the documentation at http://developers.musixmatch.com .
 2. Get an api key by signing up at http://developers.musixmatch.com/mmplans .
 3. Install the musixmatch package
 4. Run the python prompt
@@ -68,9 +68,7 @@ musixmatch_format
 musixmatch_wslocation
    the webservice base url. For example: http://api.musixmatch.com/ws/1.1
 musixmatch_apiversion
-   the api version to use in queryes. For example: 1.1
-
-   .. deprecated:: 0.9
-      Use of **musixmatch_apiversion** was deprecated in favour of
-      **musixmatch_wslocation**.
+   the api version to use in queryes. For example: 1.1. Use of
+   **musixmatch_apiversion** was deprecated in favour of
+   **musixmatch_wslocation**.
 
