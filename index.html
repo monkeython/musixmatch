@@ -1,114 +1,52 @@
 <html>
     <head>
         <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:bold' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Sunshiney' rel='stylesheet' type='text/css'>
-
-        <style type="text/css">
-        <!--
-        body {
-            background-color: #133F52;
-            color: #FFFFFF;
-            /* font-family: 'Slackey', arial, serif; */
-        }
-        span.monke {
-            color: #3882BE;
-        }
-        span.ython {
-            color: #FFED60;
-        }
-        h1, h2 {
-            font-family: 'Cabin Sketch', arial, serif;
-        }
-        #header {
-            width: 600px;
-            /* margin: 108px auto; */
-            margin-top: 108px;
-            margin-bottom: 10px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #header > h1 {
-            text-align: right;
-            font-size: 108px;
-            margin-bottom: 0;
-        }
-        #header > h2 {
-            font-size: medium;
-            text-align: right;
-        }
-        #footer {
-            font-family: 'Cabin Sketch', arial, serif;
-            text-align: center;
-            font-size: smaller;
-            margin: 0 auto;
-        }
-        #body {
-            padding: 1px;
-            background-color: #FFFFFF;
-            color: #111111;
-            width: 1024px;
-            margin: 20px auto;
-            /* box-shadow: 0px 0px 5px 5px #11303D; */
-            box-shadow: 0px 0px 10px 0px #dddddd;
-            border-radius: 10px;
-        }
-        #content {
-            border-radius: 10px;
-            border: thin dotted #aaaaaa;
-            padding: 19px;
-            margin: 0px;
-        }
-        :link, :visited {
-            color: #3882BE;
-            text-decoration: none;
-        }
-        :hover {
-            color: #3882BE;
-            text-decoration: underline;
-        }
-
-        -->
-        </style>
+        <link href='/monkeython.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <div id="header">
-            <h1><span class="monke">Monke</span><span class="ython">ython</span></h1>
-            <h2>An Agile Python developer</h2>
+        <div>
+            <header>
+                <h1><span class="monke">Monke</span><span class="ython">ython</span></h1>
+                <h2>An Agile Python developer</h2>
+                <nav>
+                    <a class="forkme" href="https://github.com/monkeython/musixmatch">Fork me on GitHub</a>
+                    <a class="githubbadge" href="http://githubbadge.appspot.com/badge/monkeython">Github Badge</a>
+                </nav>
+            </header>
+            <article>
+                <section class="first">
+                    <h1>Why Musixmatch API interface</h1>
+                    <p>It all started because I've known many <a
+                    href="http://musixmatch.com/about_us">people at Musixmatch</a>
+                    for a long time, but still didn't understand what they were
+                    starting up. So I gived a look at their <a
+                    href="https://developer.musixmatch.com/documentation">API</a>
+                    and soon loved the design.  Writing the first library sketch
+                    was so fun that i decided to keep going and i wrote the
+                    python-musixmatch.  On top of the package I'm going to build a
+                    <a href="http://plone.org">Plone</a> product as sample
+                    application, then I'll take the chance to start developing with
+                    some frameworks I'm not familiar with, like <a
+                    href="http://pylonsproject.org">Pylons/Pyramid</a>, <a
+                    href="http://turbogears.org">Turbogears</a>, <a
+                    href="http://grok.zope.org">Grok</a> and last, but not least,
+                    <a href="https://www.djangoproject.com">Django</a></p>
+                </section>
+            </article>
+            <footer>
+                <div class="copyright">Copyright 2011&copy; Luca De Vitis</div>
+                <nav>
+                    <ul>
+                        <li>Documentation:
+                            <a href="docs/html">html</a> -
+                            <a href="docs/singlehtml">singlehtml</a> -
+                            <a href="docs/json">json</a>
+                        </li>
+                        <li><a href="https://github.com/monkeython/musixmatch/tree/master/musixmatch">Source</a></li>
+                        <li><a href="dists">Download</a></li>
+                    </ul>
+                </nav>
+            </footer>
         </div>
-        <a href="https://github.com/monkeython/musixmatch"><img style="position: absolute; top: 0; right: 0; border: 0;" src="fork-me.png" alt="Fork me on GitHub"></a>
-        <div id="body">
-            <div id="content">
-
-        <h1>Why Musixmatch API interface</h1>
-        <p>It all started because I've known many <a
-        href="http://musixmatch.com/about_us">people at Musixmatch</a> for a
-        long time, but still didn't understand what they were starting up. So I
-        gived a look at their <a
-        href="https://developer.musixmatch.com/documentation">API</a> and soon
-        loved the design.  Writing the first library sketch was so fun that i
-        decided to keep going and i wrote the python-musixmatch.  On top of the
-        package I'm going to build a <a href="http://plone.org">Plone</a>
-        product as sample application, then I'll take the chance to start
-        developing with some frameworks I'm not familiar with, like <a
-        href="http://pylonsproject.org">Pylons/Pyramid</a>, <a
-        href="http://turbogears.org">Turbogears</a>, <a
-        href="http://grok.zope.org">Grok</a> and last, but not least, <a
-        href="https://www.djangoproject.com">Django</a></p>
-
-
-        <h1>What's inside this project</h1>
-        <dl>
-            <dt><a href="http://projects.monkeython.com/musixmatch/python-musixmatch/html/">python-musixmatch</a></dt>
-                <dd><a href="http://www.python.org/download/releases/">Python</a> (2.6, 2.7) package</dd>
-            <dt>Product.Musixmatch</dt>
-                <dd><a href="http://plone.org">Plone 4</a> Product</dd>
-            <dt>Work in progress for</dt>
-                <dd><a href="http://turbogears.org">Turbogears</a>, <a href="http://pylonsproject.org">Pylons/Pyramid</a>, <a href="https://www.djangoproject.com">Django</a>, <a href="http://grok.zope.org">Grok</a></dd>
-        </dl>
-
-            </div>
-        </div>
-        <div id="footer">Copyright 2011&copy; Luca De Vitis</div>
     </body>
 </html>
