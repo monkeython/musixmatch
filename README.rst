@@ -1,8 +1,8 @@
 Quick start
 ===========
 
-1. First thing first, read the documentation at http://developers.musixmatch.com .
-2. Get an api key by signing up at http://developers.musixmatch.com/mmplans .
+1. First thing first, read the documentation at http://developer.musixmatch.com .
+2. Get an api key by signing up at http://developer.musixmatch.com/mmplans .
 3. Install the musixmatch package
 4. Run the python prompt
 
